@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Array、ArrayList、LinkedList、Vector</title>
-    <url>/2020/11/02/Array%E3%80%81ArrayList%E3%80%81LinkedList%E3%80%81Vector/</url>
-    <content><![CDATA[<h2 id="Array、ArrayList、LinkedList、Vector">Array、ArrayList、LinkedList、Vector</h2>
-<h3 id="Array-与-ArrayList">Array 与 ArrayList</h3>
-<ol>
-<li>Array 可以存储基本数据类型和对象，ArrayList 只能存储对象</li>
-<li>Array 是固定大小的，而 ArrayList 大小是自动扩展的</li>
-<li>ArrayList 内置方法多，比如 addAll、removeAll、iteration 等方法只有 ArrayList 有</li>
-</ol>
-<h3 id="Arraylist-与-LinkedList">Arraylist 与 LinkedList</h3>
-<ol>
-<li>都不是线程安全的</li>
-<li>ArrayList 为<strong>动态数组</strong>，而 LinkedList 为<strong>双向链表</strong></li>
-<li>ArrayList 会存在一定的空间浪费，因为每次扩容都是之前的 1.5 倍；LinkedList 中的每个元素都要存放 前驱、后继、数据 三部分，所以每个元素的存储都比 ArrayList 花费更多的空间</li>
-<li>ArrayList 比 LinkedList 在<strong>随机访问</strong>的时候效率要高</li>
-<li>增加和删除操作，LinkedList 要比 ArrayList 效率要高</li>
-<li>ArrayList 适合多读少增删的场景；LinkedList 适合多增删少读写的场景</li>
-</ol>
-<h3 id="ArrayList-与-Vector">ArrayList 与 Vector</h3>
-<ol>
-<li>Vector 使用 Synchronized 来实现线程同步，<strong>线程安全</strong>；但正因此，ArrayList 在<strong>性能</strong>方面要优于 Vector</li>
-<li>都需要动态的调整容量，Vector 扩容每次会增加 1 倍，而 ArrayList 只会增加 50%。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++ Primer Plus(第六版)笔记</title>
     <url>/2020/11/30/C-Primer-Plus-%E7%AC%AC%E5%85%AD%E7%89%88-%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1>C++ primer Plus 第六版</h1>
@@ -105,76 +72,36 @@
       </tags>
   </entry>
   <entry>
-    <title>C++ 四种类型转换</title>
-    <url>/2021/04/09/C-%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<h1>C++四种类型转换</h1>
-<h2 id="static-cast">static_cast</h2>
-<p>是“静态转换”的意思，也就是在<strong>编译期间</strong>转换，转换失败的话会抛出一个编译错误。</p>
-<p>用于良性转换，一般不会导致意外发生，风险很低。</p>
-<p>需要注意的是，static_cast <strong>不能用于无关类型之间的转换</strong>，因为这些转换都是有风险的，例如：</p>
-<ul>
-<li>两个具体类型指针之间的转换，例如<code>int *</code>转<code>double *</code>、<code>Student *</code>转<code>int *</code>等。不同类型的数据存储格式不一样，长度也不一样，用 A 类型的指针指向 B 类型的数据后，会按照 A 类型的方式来处理数据：如果是读取操作，可能会得到一堆没有意义的值；如果是写入操作，可能会使 B 类型的数据遭到破坏，当再次以 B 类型的方式读取数据时会得到一堆没有意义的值。</li>
-<li>int 和指针之间的转换。将一个具体的地址赋值给指针变量是非常危险的，因为该地址上的内存可能没有分配，也可能没有读写权限，恰好是可用内存反而是小概率事件。</li>
-</ul>
-<p>也不能用来去掉表达式的 const 修饰和 volatile 修饰</p>
-<h2 id="const-cast">const_cast</h2>
-<p>用于 const 与非 const、volatile 与非 volatile 之间的转换。换句话说，const_cast 就是用来将 const/volatile 类型转换为非 const/volatile 类型。</p>
-<p>使用 const_cast 进行强制类型转换可以<strong>突破 C/C++ 的常数限制</strong>，修改常数的值，因此有一定的危险性；但是程序员如果这样做的话，基本上会意识到这个问题，因此也还有一定的安全性。</p>
-<h2 id="reinterpret-cast">reinterpret_cast</h2>
-<p>高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。</p>
-<p>reinterpret 是“重新解释”的意思，顾名思义，reinterpret_cast 这种转换<strong>仅仅是对二进制位的重新解释</strong>，不会借助已有的转换规则对数据进行调整，非常简单粗暴，所以风险很高。</p>
-<p>reinterpret_cast 可以认为是 <strong>static_cast 的一种补充</strong>，一些 static_cast 不能完成的转换，就可以用 reinterpret_cast 来完成</p>
-<h2 id="dynamic-cast">dynamic_cast</h2>
-<p>dynamic_cast 与 static_cast 是相对的，dynamic_cast 是“动态转换”的意思，static_cast 是“静态转换”的意思。dynamic_cast 会在程序运行期间借助 RTTI 进行类型转换，这就要求基类必须包含虚函数；static_cast 在编译期间完成类型转换，能够更加及时地发现错误。</p>
-<p>dynamic_cast 用于在类的<strong>继承层次</strong>之间进行类型转换，它既允许向上转型（Upcasting），也允许向下转型（Downcasting）。向上转型是无条件的，不会进行任何检测，所以都能成功；向下转型的前提必须是安全的，要借助 RTTI 进行检测，所有只有一部分能成功。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// C++风格调用</span><br>xxx_cast&lt;new_type&gt;(data);<br><br><span class="hljs-comment">// 老式的C风格</span><br>(new_type)data;<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++ 容器</title>
-    <url>/2021/03/22/C-%E5%AE%B9%E5%99%A8/</url>
-    <content><![CDATA[<p>C++容器</p>
-<p>1、字符串</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br></code></pre></td></tr></table></figure>
-<p>2、常用函数</p>
+    <title>Array、ArrayList、LinkedList、Vector</title>
+    <url>/2020/11/02/Array%E3%80%81ArrayList%E3%80%81LinkedList%E3%80%81Vector/</url>
+    <content><![CDATA[<h2 id="Array、ArrayList、LinkedList、Vector">Array、ArrayList、LinkedList、Vector</h2>
+<h3 id="Array-与-ArrayList">Array 与 ArrayList</h3>
 <ol>
-<li>
-<p><strong>strlen()</strong>：返回存储在数组中的<strong>字符串</strong>（不包括空字符）的长度</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strlen</span>(字符数组)<br></code></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>sizeof()</strong>：返回<strong>整个数组</strong>的长度</p>
-</li>
-<li>
-<p><strong>strcmp()</strong>：比较两个字符串的大小</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strcmp</span>(字符数组<span class="hljs-number">1</span>, 字符数组<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>strcpy()</strong>：把一个字符串复制给另一个字符串</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strcpy</span>(字符数组<span class="hljs-number">1</span>, 字符数组<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
-<p>这里的复制包括 ‘\0’</p>
-</li>
-<li>
-<p><strong>strcat()</strong>：字符串拼接</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strcat</span>(字符数组<span class="hljs-number">1</span>, 字符数组<span class="hljs-number">2</span>);<br><span class="hljs-comment">// 将 2 拼接到 1 后面</span><br></code></pre></td></tr></table></figure>
-</li>
-<li>
-<p><strong>sscanf()</strong> 格式输出（左 -&gt; 右）和 <strong>sprintf()</strong> 格式输出（右 -&gt; 左）：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">sscanf</span>(str, <span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br><span class="hljs-built_in">sprintf</span>(str, <span class="hljs-string">&quot;%d&quot;</span>, n);<br></code></pre></td></tr></table></figure>
-</li>
+<li>Array 可以存储基本数据类型和对象，ArrayList 只能存储对象</li>
+<li>Array 是固定大小的，而 ArrayList 大小是自动扩展的</li>
+<li>ArrayList 内置方法多，比如 addAll、removeAll、iteration 等方法只有 ArrayList 有</li>
+</ol>
+<h3 id="Arraylist-与-LinkedList">Arraylist 与 LinkedList</h3>
+<ol>
+<li>都不是线程安全的</li>
+<li>ArrayList 为<strong>动态数组</strong>，而 LinkedList 为<strong>双向链表</strong></li>
+<li>ArrayList 会存在一定的空间浪费，因为每次扩容都是之前的 1.5 倍；LinkedList 中的每个元素都要存放 前驱、后继、数据 三部分，所以每个元素的存储都比 ArrayList 花费更多的空间</li>
+<li>ArrayList 比 LinkedList 在<strong>随机访问</strong>的时候效率要高</li>
+<li>增加和删除操作，LinkedList 要比 ArrayList 效率要高</li>
+<li>ArrayList 适合多读少增删的场景；LinkedList 适合多增删少读写的场景</li>
+</ol>
+<h3 id="ArrayList-与-Vector">ArrayList 与 Vector</h3>
+<ol>
+<li>Vector 使用 Synchronized 来实现线程同步，<strong>线程安全</strong>；但正因此，ArrayList 在<strong>性能</strong>方面要优于 Vector</li>
+<li>都需要动态的调整容量，Vector 扩容每次会增加 1 倍，而 ArrayList 只会增加 50%。</li>
 </ol>
 ]]></content>
       <categories>
         <category>Code</category>
       </categories>
       <tags>
-        <tag>C++</tag>
+        <tag>Java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -260,6 +187,237 @@
       <tags>
         <tag>C++</tag>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 容器</title>
+    <url>/2021/03/22/C-%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<p>C++容器</p>
+<p>1、字符串</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p>2、常用函数</p>
+<ol>
+<li>
+<p><strong>strlen()</strong>：返回存储在数组中的<strong>字符串</strong>（不包括空字符）的长度</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strlen</span>(字符数组)<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>sizeof()</strong>：返回<strong>整个数组</strong>的长度</p>
+</li>
+<li>
+<p><strong>strcmp()</strong>：比较两个字符串的大小</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strcmp</span>(字符数组<span class="hljs-number">1</span>, 字符数组<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>strcpy()</strong>：把一个字符串复制给另一个字符串</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strcpy</span>(字符数组<span class="hljs-number">1</span>, 字符数组<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+<p>这里的复制包括 ‘\0’</p>
+</li>
+<li>
+<p><strong>strcat()</strong>：字符串拼接</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">strcat</span>(字符数组<span class="hljs-number">1</span>, 字符数组<span class="hljs-number">2</span>);<br><span class="hljs-comment">// 将 2 拼接到 1 后面</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>sscanf()</strong> 格式输出（左 -&gt; 右）和 <strong>sprintf()</strong> 格式输出（右 -&gt; 左）：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">sscanf</span>(str, <span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br><span class="hljs-built_in">sprintf</span>(str, <span class="hljs-string">&quot;%d&quot;</span>, n);<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 四种类型转换</title>
+    <url>/2021/04/09/C-%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<h1>C++四种类型转换</h1>
+<h2 id="static-cast">static_cast</h2>
+<p>是“静态转换”的意思，也就是在<strong>编译期间</strong>转换，转换失败的话会抛出一个编译错误。</p>
+<p>用于良性转换，一般不会导致意外发生，风险很低。</p>
+<p>需要注意的是，static_cast <strong>不能用于无关类型之间的转换</strong>，因为这些转换都是有风险的，例如：</p>
+<ul>
+<li>两个具体类型指针之间的转换，例如<code>int *</code>转<code>double *</code>、<code>Student *</code>转<code>int *</code>等。不同类型的数据存储格式不一样，长度也不一样，用 A 类型的指针指向 B 类型的数据后，会按照 A 类型的方式来处理数据：如果是读取操作，可能会得到一堆没有意义的值；如果是写入操作，可能会使 B 类型的数据遭到破坏，当再次以 B 类型的方式读取数据时会得到一堆没有意义的值。</li>
+<li>int 和指针之间的转换。将一个具体的地址赋值给指针变量是非常危险的，因为该地址上的内存可能没有分配，也可能没有读写权限，恰好是可用内存反而是小概率事件。</li>
+</ul>
+<p>也不能用来去掉表达式的 const 修饰和 volatile 修饰</p>
+<h2 id="const-cast">const_cast</h2>
+<p>用于 const 与非 const、volatile 与非 volatile 之间的转换。换句话说，const_cast 就是用来将 const/volatile 类型转换为非 const/volatile 类型。</p>
+<p>使用 const_cast 进行强制类型转换可以<strong>突破 C/C++ 的常数限制</strong>，修改常数的值，因此有一定的危险性；但是程序员如果这样做的话，基本上会意识到这个问题，因此也还有一定的安全性。</p>
+<h2 id="reinterpret-cast">reinterpret_cast</h2>
+<p>高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。</p>
+<p>reinterpret 是“重新解释”的意思，顾名思义，reinterpret_cast 这种转换<strong>仅仅是对二进制位的重新解释</strong>，不会借助已有的转换规则对数据进行调整，非常简单粗暴，所以风险很高。</p>
+<p>reinterpret_cast 可以认为是 <strong>static_cast 的一种补充</strong>，一些 static_cast 不能完成的转换，就可以用 reinterpret_cast 来完成</p>
+<h2 id="dynamic-cast">dynamic_cast</h2>
+<p>dynamic_cast 与 static_cast 是相对的，dynamic_cast 是“动态转换”的意思，static_cast 是“静态转换”的意思。dynamic_cast 会在程序运行期间借助 RTTI 进行类型转换，这就要求基类必须包含虚函数；static_cast 在编译期间完成类型转换，能够更加及时地发现错误。</p>
+<p>dynamic_cast 用于在类的<strong>继承层次</strong>之间进行类型转换，它既允许向上转型（Upcasting），也允许向下转型（Downcasting）。向上转型是无条件的，不会进行任何检测，所以都能成功；向下转型的前提必须是安全的，要借助 RTTI 进行检测，所有只有一部分能成功。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// C++风格调用</span><br>xxx_cast&lt;new_type&gt;(data);<br><br><span class="hljs-comment">// 老式的C风格</span><br>(new_type)data;<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++ 格式化输出</title>
+    <url>/2020/11/30/C-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/</url>
+    <content><![CDATA[<h1>c++格式化输出</h1>
+<p><a href="http://c.biancheng.net/view/275.html">http://c.biancheng.net/view/275.html</a></p>
+<p>1、在头文件 <strong>iomanip</strong> 中定义</p>
+<p>保留<strong>ans</strong>位小数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iomanip&gt;</span></span><br>cout &lt;&lt; <span class="hljs-built_in">setiosflags</span>(ios::fixed) &lt;&lt; <span class="hljs-built_in">setprecision</span>(<span class="hljs-number">2</span>) &lt;&lt; ans &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>流操纵算子</th>
+<th>作  用</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*dec</td>
+<td>以十进制形式输出整数</td>
+<td>常用</td>
+</tr>
+<tr>
+<td>hex</td>
+<td>以十六进制形式输出整数</td>
+<td></td>
+</tr>
+<tr>
+<td>oct</td>
+<td>以八进制形式输出整数</td>
+<td></td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>以普通小数形式输出浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>scientific</td>
+<td>以科学计数法形式输出浮点数</td>
+<td></td>
+</tr>
+<tr>
+<td>left</td>
+<td>左对齐，即在宽度不足时将填充字符添加到右边</td>
+<td></td>
+</tr>
+<tr>
+<td>*right</td>
+<td>右对齐，即在宽度不足时将填充字符添加到左边</td>
+<td></td>
+</tr>
+<tr>
+<td>setbase(b)</td>
+<td>设置输出整数时的进制，b=8、10 或 16</td>
+<td></td>
+</tr>
+<tr>
+<td>setw(w)</td>
+<td>指定输出宽度为 w 个字符，或输人字符串时读入 w 个字符</td>
+<td></td>
+</tr>
+<tr>
+<td>setfill©</td>
+<td>在指定输出宽度的情况下，输出的宽度不足时用字符 c 填充（默认情况是用空格填充）</td>
+<td></td>
+</tr>
+<tr>
+<td>setprecision(n)</td>
+<td>设置输出浮点数的精度为 n。  在使用非 fixed 且非 scientific 方式输出的情况下，n 即为有效数字最多的位数，如果有效数字位数超过 n，则小数部分四舍五人，或自动变为科学计 数法输出并保留一共 n 位有效数字。  在使用 fixed 方式和 scientific 方式输出的情况下，n 是小数点后面应保留的位数。</td>
+<td></td>
+</tr>
+<tr>
+<td>setiosflags(flag)</td>
+<td>将某个输出格式标志置为 1</td>
+<td></td>
+</tr>
+<tr>
+<td>resetiosflags(flag)</td>
+<td>将某个输出格式标志置为 0</td>
+<td></td>
+</tr>
+<tr>
+<td>boolapha</td>
+<td>把 true 和 false 输出为字符串</td>
+<td>不常用</td>
+</tr>
+<tr>
+<td>*noboolalpha</td>
+<td>把 true 和 false 输出为 0、1</td>
+<td></td>
+</tr>
+<tr>
+<td>showbase</td>
+<td>输出表示数值的进制的前缀</td>
+<td></td>
+</tr>
+<tr>
+<td>*noshowbase</td>
+<td>不输出表示数值的进制.的前缀</td>
+<td></td>
+</tr>
+<tr>
+<td>showpoint</td>
+<td>总是输出小数点</td>
+<td></td>
+</tr>
+<tr>
+<td>*noshowpoint</td>
+<td>只有当小数部分存在时才显示小数点</td>
+<td></td>
+</tr>
+<tr>
+<td>showpos</td>
+<td>在非负数值中显示 +</td>
+<td></td>
+</tr>
+<tr>
+<td>*noshowpos</td>
+<td>在非负数值中不显示 +</td>
+<td></td>
+</tr>
+<tr>
+<td>*skipws</td>
+<td>输入时跳过空白字符</td>
+<td></td>
+</tr>
+<tr>
+<td>noskipws</td>
+<td>输入时不跳过空白字符</td>
+<td></td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>十六进制数中使用 A~E。若输出前缀，则前缀输出 0X，科学计数法中输出 E</td>
+<td></td>
+</tr>
+<tr>
+<td>*nouppercase</td>
+<td>十六进制数中使用 a~e。若输出前缀，则前缀输出 0x，科学计数法中输出 e。</td>
+<td></td>
+</tr>
+<tr>
+<td>internal</td>
+<td>数值的符号（正负号）在指定宽度内左对齐，数值右对 齐，中间由填充字符填充。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>输入输出</tag>
       </tags>
   </entry>
   <entry>
@@ -513,9 +671,68 @@
         <category>Code</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>C++</tag>
+        <tag>数据结构</tag>
         <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTTP和HTTPS</title>
+    <url>/2021/08/14/HTTP%E5%92%8CHTTPS/</url>
+    <content><![CDATA[<h1>HTTP 和 HTTPS</h1>
+<h2 id="HTTP">HTTP</h2>
+<p>使用<strong>TCP</strong></p>
+<p>HTTP 最重要也是最突出的优点是 <strong>简单、灵活、易于扩展</strong>。</p>
+<p>因为 HTTP 协议本身不属于一种语言，它并不限定某种编程语言或者操作系统，所以天然具有<strong>跨语言、跨平台</strong>的优越性。</p>
+<p><strong>无状态</strong>，每个请求都是完全独立的，简单，不需要使用状态机</p>
+<p>无状态其实既是优点又是缺点。因为服务器没有记忆能力，所以就不需要额外的资源来记录状态信息，不仅实现上会简单一些，而且还能减轻服务器的负担，能够把更多的 CPU 和内存用来对外提供服务。</p>
+<p>既然服务器没有记忆能力，它就无法支持需要连续多个步骤的<code>事务</code>操作。每次都得问一遍身份信息，不仅麻烦，而且还增加了不必要的数据传输量。由此出现了 <code>Cookie</code> 技术。</p>
+<p><strong>明文传输</strong>，不安全</p>
+<p><strong>no-cache</strong>：必须先与服务器确认返回的响应是否被更改，然后才能使用该响应来满足后续对同一个网址的请求。</p>
+<p>**no-store：**所有内容都不会被缓存或 Internet 临时文件中</p>
+<h3 id="Cookie与Session">Cookie与Session</h3>
+<p>Cookie带来的问题：</p>
+<p>1.每次页面请求都会把cookies往服务器上送一次，<strong>浪费了带宽</strong>；</p>
+<p>2.状态数据<strong>存放在浏览器上太危险</strong>了，而且Cookies在HTTP请求中是以明文传输的。</p>
+<p>3.Cookie的<strong>大小</strong>限制在4KB, 对于复杂的状态数据显然不够用。</p>
+<p>主流的做法是：</p>
+<p>1、浏览器向HTTP服务器发出第一个请求时，服务器分配一个SessionID, 存入浏览器的Cookies中。这个SessionID一般是一个类似于GUID的字符串，几十个字节，也不多。</p>
+<p>2、<strong>服务器上维持一个会话状态数据库</strong>（也可能是个内存表），用SessionID作为标识存放每一个会话的状态信息。</p>
+<p>3、每一次浏览器发出请求时，都将这个SessionID向服务器提交一次，便于服务器根据它获得之前的会话数据，写入新的会话数据。</p>
+<h2 id="HTTPS">HTTPS</h2>
+<h3 id="对称加密与非对称加密">对称加密与非对称加密</h3>
+<p>对称加密：加密与解密使用同一个密钥</p>
+<p>优缺点：算法公开，计算量小，加密速度快、效率高；但由于加密解密都使用同一个密钥，而由于信道是不安全的，导致其不安全。</p>
+<p>非对称加密：双方各有自己的公钥与私钥，使用公钥加密将发送的信息，使用私钥解密接收到的信息。只在信道上沟通用于加密的公钥，由于解密的私钥未曾在信道上传输，所以私钥是安全的，也即非对称加密是安全的。</p>
+<p>优缺点：算法复杂，安全性高；但同时也由于其算法复杂，导致效率低下</p>
+<p><img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/20210914161130.png" alt="image-20210914161127660"></p>
+<h3 id="HTTPS采用的加密方式">HTTPS采用的加密方式</h3>
+<p>由于对称加密不安全，非对称加密</p>
+<p>HTTPS采用对称与非对称结合的加密方式，这种方式看似安全实则不然。在没有引入证书之前，这种对称与非对称结合的加密方式也并非是传输安全的。</p>
+<p>他无法防范这种中间人攻击，中间人可以轻而易举的获取其沟通所得的对称密钥。</p>
+<p>而其之所以不安全，是因为<strong>客户端不知道，这把公钥是不是服务器的</strong>。解决这个问题的方式就是使用数字证书。</p>
+<p><img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/20210914160828.png" alt="image-20210914160825223"></p>
+]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>计网</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java-Object类的方法</title>
+    <url>/2019/10/05/Java-Object%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="Java-Object类的方法">Java-Object类的方法</h2>
+<p>Object有以下方法：</p>
+<p><img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/202110051049327.png" alt="Object类的方法"></p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -649,223 +866,6 @@ print、println     -- 底层打印函数，在部署环境中建议使用 fmt �
       </categories>
       <tags>
         <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTTP和HTTPS</title>
-    <url>/2021/08/14/HTTP%E5%92%8CHTTPS/</url>
-    <content><![CDATA[<h1>HTTP 和 HTTPS</h1>
-<h2 id="HTTP">HTTP</h2>
-<p>使用<strong>TCP</strong></p>
-<p>HTTP 最重要也是最突出的优点是 <strong>简单、灵活、易于扩展</strong>。</p>
-<p>因为 HTTP 协议本身不属于一种语言，它并不限定某种编程语言或者操作系统，所以天然具有<strong>跨语言、跨平台</strong>的优越性。</p>
-<p><strong>无状态</strong>，每个请求都是完全独立的，简单，不需要使用状态机</p>
-<p>无状态其实既是优点又是缺点。因为服务器没有记忆能力，所以就不需要额外的资源来记录状态信息，不仅实现上会简单一些，而且还能减轻服务器的负担，能够把更多的 CPU 和内存用来对外提供服务。</p>
-<p>既然服务器没有记忆能力，它就无法支持需要连续多个步骤的<code>事务</code>操作。每次都得问一遍身份信息，不仅麻烦，而且还增加了不必要的数据传输量。由此出现了 <code>Cookie</code> 技术。</p>
-<p><strong>明文传输</strong>，不安全</p>
-<p><strong>no-cache</strong>：必须先与服务器确认返回的响应是否被更改，然后才能使用该响应来满足后续对同一个网址的请求。</p>
-<p>**no-store：**所有内容都不会被缓存或 Internet 临时文件中</p>
-<h3 id="Cookie与Session">Cookie与Session</h3>
-<p>Cookie带来的问题：</p>
-<p>1.每次页面请求都会把cookies往服务器上送一次，<strong>浪费了带宽</strong>；</p>
-<p>2.状态数据<strong>存放在浏览器上太危险</strong>了，而且Cookies在HTTP请求中是以明文传输的。</p>
-<p>3.Cookie的<strong>大小</strong>限制在4KB, 对于复杂的状态数据显然不够用。</p>
-<p>主流的做法是：</p>
-<p>1、浏览器向HTTP服务器发出第一个请求时，服务器分配一个SessionID, 存入浏览器的Cookies中。这个SessionID一般是一个类似于GUID的字符串，几十个字节，也不多。</p>
-<p>2、<strong>服务器上维持一个会话状态数据库</strong>（也可能是个内存表），用SessionID作为标识存放每一个会话的状态信息。</p>
-<p>3、每一次浏览器发出请求时，都将这个SessionID向服务器提交一次，便于服务器根据它获得之前的会话数据，写入新的会话数据。</p>
-<h2 id="HTTPS">HTTPS</h2>
-<h3 id="对称加密与非对称加密">对称加密与非对称加密</h3>
-<p>对称加密：加密与解密使用同一个密钥</p>
-<p>优缺点：算法公开，计算量小，加密速度快、效率高；但由于加密解密都使用同一个密钥，而由于信道是不安全的，导致其不安全。</p>
-<p>非对称加密：双方各有自己的公钥与私钥，使用公钥加密将发送的信息，使用私钥解密接收到的信息。只在信道上沟通用于加密的公钥，由于解密的私钥未曾在信道上传输，所以私钥是安全的，也即非对称加密是安全的。</p>
-<p>优缺点：算法复杂，安全性高；但同时也由于其算法复杂，导致效率低下</p>
-<p><img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/20210914161130.png" alt="image-20210914161127660"></p>
-<h3 id="HTTPS采用的加密方式">HTTPS采用的加密方式</h3>
-<p>由于对称加密不安全，非对称加密</p>
-<p>HTTPS采用对称与非对称结合的加密方式，这种方式看似安全实则不然。在没有引入证书之前，这种对称与非对称结合的加密方式也并非是传输安全的。</p>
-<p>他无法防范这种中间人攻击，中间人可以轻而易举的获取其沟通所得的对称密钥。</p>
-<p>而其之所以不安全，是因为<strong>客户端不知道，这把公钥是不是服务器的</strong>。解决这个问题的方式就是使用数字证书。</p>
-<p><img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/20210914160828.png" alt="image-20210914160825223"></p>
-]]></content>
-      <categories>
-        <category>计算机</category>
-      </categories>
-      <tags>
-        <tag>计网</tag>
-        <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-Object类的方法</title>
-    <url>/2019/10/05/Java-Object%E7%B1%BB%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="Java-Object类的方法">Java-Object类的方法</h2>
-<p>Object有以下方法：</p>
-<p><img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/202110051049327.png" alt="Object类的方法"></p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++ 格式化输出</title>
-    <url>/2020/11/30/C-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA/</url>
-    <content><![CDATA[<h1>c++格式化输出</h1>
-<p><a href="http://c.biancheng.net/view/275.html">http://c.biancheng.net/view/275.html</a></p>
-<p>1、在头文件 <strong>iomanip</strong> 中定义</p>
-<p>保留<strong>ans</strong>位小数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iomanip&gt;</span></span><br>cout &lt;&lt; <span class="hljs-built_in">setiosflags</span>(ios::fixed) &lt;&lt; <span class="hljs-built_in">setprecision</span>(<span class="hljs-number">2</span>) &lt;&lt; ans &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>流操纵算子</th>
-<th>作  用</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*dec</td>
-<td>以十进制形式输出整数</td>
-<td>常用</td>
-</tr>
-<tr>
-<td>hex</td>
-<td>以十六进制形式输出整数</td>
-<td></td>
-</tr>
-<tr>
-<td>oct</td>
-<td>以八进制形式输出整数</td>
-<td></td>
-</tr>
-<tr>
-<td>fixed</td>
-<td>以普通小数形式输出浮点数</td>
-<td></td>
-</tr>
-<tr>
-<td>scientific</td>
-<td>以科学计数法形式输出浮点数</td>
-<td></td>
-</tr>
-<tr>
-<td>left</td>
-<td>左对齐，即在宽度不足时将填充字符添加到右边</td>
-<td></td>
-</tr>
-<tr>
-<td>*right</td>
-<td>右对齐，即在宽度不足时将填充字符添加到左边</td>
-<td></td>
-</tr>
-<tr>
-<td>setbase(b)</td>
-<td>设置输出整数时的进制，b=8、10 或 16</td>
-<td></td>
-</tr>
-<tr>
-<td>setw(w)</td>
-<td>指定输出宽度为 w 个字符，或输人字符串时读入 w 个字符</td>
-<td></td>
-</tr>
-<tr>
-<td>setfill©</td>
-<td>在指定输出宽度的情况下，输出的宽度不足时用字符 c 填充（默认情况是用空格填充）</td>
-<td></td>
-</tr>
-<tr>
-<td>setprecision(n)</td>
-<td>设置输出浮点数的精度为 n。  在使用非 fixed 且非 scientific 方式输出的情况下，n 即为有效数字最多的位数，如果有效数字位数超过 n，则小数部分四舍五人，或自动变为科学计 数法输出并保留一共 n 位有效数字。  在使用 fixed 方式和 scientific 方式输出的情况下，n 是小数点后面应保留的位数。</td>
-<td></td>
-</tr>
-<tr>
-<td>setiosflags(flag)</td>
-<td>将某个输出格式标志置为 1</td>
-<td></td>
-</tr>
-<tr>
-<td>resetiosflags(flag)</td>
-<td>将某个输出格式标志置为 0</td>
-<td></td>
-</tr>
-<tr>
-<td>boolapha</td>
-<td>把 true 和 false 输出为字符串</td>
-<td>不常用</td>
-</tr>
-<tr>
-<td>*noboolalpha</td>
-<td>把 true 和 false 输出为 0、1</td>
-<td></td>
-</tr>
-<tr>
-<td>showbase</td>
-<td>输出表示数值的进制的前缀</td>
-<td></td>
-</tr>
-<tr>
-<td>*noshowbase</td>
-<td>不输出表示数值的进制.的前缀</td>
-<td></td>
-</tr>
-<tr>
-<td>showpoint</td>
-<td>总是输出小数点</td>
-<td></td>
-</tr>
-<tr>
-<td>*noshowpoint</td>
-<td>只有当小数部分存在时才显示小数点</td>
-<td></td>
-</tr>
-<tr>
-<td>showpos</td>
-<td>在非负数值中显示 +</td>
-<td></td>
-</tr>
-<tr>
-<td>*noshowpos</td>
-<td>在非负数值中不显示 +</td>
-<td></td>
-</tr>
-<tr>
-<td>*skipws</td>
-<td>输入时跳过空白字符</td>
-<td></td>
-</tr>
-<tr>
-<td>noskipws</td>
-<td>输入时不跳过空白字符</td>
-<td></td>
-</tr>
-<tr>
-<td>uppercase</td>
-<td>十六进制数中使用 A~E。若输出前缀，则前缀输出 0X，科学计数法中输出 E</td>
-<td></td>
-</tr>
-<tr>
-<td>*nouppercase</td>
-<td>十六进制数中使用 a~e。若输出前缀，则前缀输出 0x，科学计数法中输出 e。</td>
-<td></td>
-</tr>
-<tr>
-<td>internal</td>
-<td>数值的符号（正负号）在指定宽度内左对齐，数值右对 齐，中间由填充字符填充。</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>输入输出</tag>
       </tags>
   </entry>
   <entry>
@@ -1550,23 +1550,6 @@ Eden 区域的存活对象和 From 区域对象，都会被复制到 to 区域�
       </tags>
   </entry>
   <entry>
-    <title>Jupyter 设置中英文</title>
-    <url>/2021/01/29/Jupyter-%E8%AE%BE%E7%BD%AE%E4%B8%AD%E8%8B%B1%E6%96%87/</url>
-    <content><![CDATA[<p>jupyter设置中/英文语言</p>
-<p>设置成英文：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">set LC_ALL=en_US.UTF-8<br></code></pre></td></tr></table></figure>
-<p>设置成中文：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">set LC_ALL=zh_CN.UTF-8<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>Jupyter</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 命令</title>
     <url>/2021/01/30/Linux-%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>@TOP[Linux学习]</p>
@@ -1633,6 +1616,23 @@ Eden 区域的存活对象和 From 区域对象，都会被复制到 to 区域�
       </categories>
       <tags>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Jupyter 设置中英文</title>
+    <url>/2021/01/29/Jupyter-%E8%AE%BE%E7%BD%AE%E4%B8%AD%E8%8B%B1%E6%96%87/</url>
+    <content><![CDATA[<p>jupyter设置中/英文语言</p>
+<p>设置成英文：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">set LC_ALL=en_US.UTF-8<br></code></pre></td></tr></table></figure>
+<p>设置成中文：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">set LC_ALL=zh_CN.UTF-8<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>Jupyter</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -2350,6 +2350,42 @@ DCL：
       </tags>
   </entry>
   <entry>
+    <title>git基础与实操</title>
+    <url>/2022/03/17/git%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%AE%9E%E6%93%8D/</url>
+    <content><![CDATA[<h1></h1>
+<h2 id="起步">起步</h2>
+<h3 id="历史">历史</h3>
+<p>diff 和 patch<br>
+-&gt; 本地 RCS<br>
+-&gt; 集中式 CVS(Concurrent Version System) &amp; SVN(Subversion)<br>
+-&gt; 分布式 git</p>
+<p>git 是分布式版本控制系统，记录快照而不是累积的差异。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/Roaming/Typora/typora-user-images/image-20220317164242113.png" alt="image-20220317164242113"></p>
+<h3 id="前置概念">前置概念</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/Roaming/Typora/typora-user-images/image-20220317183339003.png" alt="image-20220317183339003"></p>
+<h2 id="安装">安装</h2>
+<p>基本命令</p>
+]]></content>
+      <categories>
+        <category>未分类</category>
+      </categories>
+      <tags>
+        <tag>Default</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo配置latex支持</title>
+    <url>/2021/11/06/hexo%E9%85%8D%E7%BD%AElatex%E6%94%AF%E6%8C%81/</url>
+    <content><![CDATA[<p>很怪，使用debug模式开启了次服务器，然后代码高亮就正常了…</p>
+]]></content>
+      <categories>
+        <category>hexo配置</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>for 循环与 stream 流</title>
     <url>/2022/03/16/for-%E5%BE%AA%E7%8E%AF%E4%B8%8E-stream-%E6%B5%81/</url>
     <content><![CDATA[<h1>异或运算性质</h1>
@@ -2382,15 +2418,51 @@ DCL：
       </tags>
   </entry>
   <entry>
-    <title>hexo配置latex支持</title>
-    <url>/2021/11/06/hexo%E9%85%8D%E7%BD%AElatex%E6%94%AF%E6%8C%81/</url>
-    <content><![CDATA[<p>很怪，使用debug模式开启了次服务器，然后代码高亮就正常了…</p>
+    <title>heapq 堆队列</title>
+    <url>/2020/04/14/heapq-%E5%A0%86%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<h1>Python 堆队列 – heapq</h1>
+<h2 id="介绍">介绍</h2>
+<p>这个模块提供了堆队列算法的实现，也称为<strong>优先队列算法</strong>。</p>
+<p>附上<a href="https://docs.python.org/zh-cn/3/library/heapq.html">Python3文档</a>。</p>
+<p><strong>heapq</strong>是一个二叉树，它的每个父节点的值都只会小于或等于所有孩子节点（的值）。 它使用了数组来实现：从零开始计数，对于所有的 <em>k</em> ，都有 <code>heap[k] &lt;= heap[2*k+1]</code> 和 <code>heap[k] &lt;= heap[2*k+2]</code>。 为了便于比较，不存在的元素被认为是无限大。 堆最有趣的特性在于最小的元素总是在根结点：<code>heap[0]</code>。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>使用了<strong>从零开始</strong>的索引</li>
+<li>堆为<strong>最小堆</strong></li>
+</ul>
+<h2 id="常用函数">常用函数</h2>
+<ul>
+<li><code>heappush(heap, item)</code>：保持堆的不变性。</li>
+<li><code>heappop(heap)</code>：弹出并返回 <strong>heap</strong> 中最小的元素，保持堆的不变性。</li>
+<li><code>heappushpop(heap, item)</code>：将 <strong>item</strong> 放入堆中，然后弹出并返回 <strong>heap</strong> 的最小元素，虽然先调用 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappush"><code>heappush()</code></a> 再调用 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappop"><code>heappop()</code></a> 也可以，但是这个更快。</li>
+<li><code>heapify(x)</code>：将 <strong>list</strong> x 转换成堆，原地，线性时间</li>
+<li><code>heapreplace(heap, item)</code>：弹出并返回 <strong>heap</strong> 中最小的一项，同时推入新的 <strong>item</strong>。比 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappop"><code>heappop()</code></a> 加 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappush"><code>heappush()</code></a> 更高效。</li>
+</ul>
+<h2 id="三个基于堆的通用功能函数">三个基于堆的通用功能函数</h2>
+<ul>
+<li>
+<p><code>merge(*iterables, key=None, reverse=False)</code>：将多个已排序的输入合并为一个已排序的输出。类似于 <code>sorted(itertools.chain(*iterables))</code> 但返回一个可迭代对象，不会一次性地将数据全部放入内存，并假定每个输入流都是已排序的（从小到大）。</p>
+<p>具有两个可选参数，它们都必须指定为关键字参数。</p>
+<p><em>key</em> 指定带有单个参数的 <a href="https://docs.python.org/zh-cn/3/glossary.html#term-key-function">key function</a>，用于从每个输入元素中提取比较键。 默认值为 <code>None</code> (直接比较元素)。</p>
+<p><em>reverse</em> 为一个布尔值。 如果设为 <code>True</code>，则输入元素将按比较结果逆序进行合并。</p>
+</li>
+<li>
+<p><code>nlargest</code>(<em>n</em>, <em>iterable</em>, <em>key=None</em>)<a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.nlargest">¶</a></p>
+<p>从 <em>iterable</em> 所定义的数据集中返回前 <em>n</em> 个最大元素组成的列表。 如果提供了 <em>key</em> 则其应指定一个单参数的函数，用于从 <em>iterable</em> 的每个元素中提取比较键 (例如 <code>key=str.lower</code>)。 等价于: <code>sorted(iterable, key=key, reverse=True)[:n]</code>。</p>
+</li>
+<li>
+<p><code>nsmallest</code>(<em>n</em>, <em>iterable</em>, <em>key=None</em>)</p>
+<p>从 <em>iterable</em> 所定义的数据集中返回前 <em>n</em> 个最小元素组成的列表。 如果提供了 <em>key</em> 则其应指定一个单参数的函数，用于从 <em>iterable</em> 的每个元素中提取比较键 (例如 <code>key=str.lower</code>)。 等价于: <code>sorted(iterable, key=key)[:n]</code>。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>hexo配置</category>
+        <category>Code</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>数据结构</tag>
+        <tag>Python</tag>
+        <tag>堆</tag>
       </tags>
   </entry>
   <entry>
@@ -2490,78 +2562,6 @@ Set 接口存储一组互不相同的元素，一个集合中不存在两个相�
       </tags>
   </entry>
   <entry>
-    <title>git基础与实操</title>
-    <url>/2022/03/17/git%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%AE%9E%E6%93%8D/</url>
-    <content><![CDATA[<h1></h1>
-<h2 id="起步">起步</h2>
-<h3 id="历史">历史</h3>
-<p>diff 和 patch<br>
--&gt; 本地 RCS<br>
--&gt; 集中式 CVS(Concurrent Version System) &amp; SVN(Subversion)<br>
--&gt; 分布式 git</p>
-<p>git 是分布式版本控制系统，记录快照而不是累积的差异。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/Roaming/Typora/typora-user-images/image-20220317164242113.png" alt="image-20220317164242113"></p>
-<h3 id="前置概念">前置概念</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/Roaming/Typora/typora-user-images/image-20220317183339003.png" alt="image-20220317183339003"></p>
-<h2 id="安装">安装</h2>
-<p>基本命令</p>
-]]></content>
-      <categories>
-        <category>未分类</category>
-      </categories>
-      <tags>
-        <tag>Default</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>heapq 堆队列</title>
-    <url>/2020/04/14/heapq-%E5%A0%86%E9%98%9F%E5%88%97/</url>
-    <content><![CDATA[<h1>Python 堆队列 – heapq</h1>
-<h2 id="介绍">介绍</h2>
-<p>这个模块提供了堆队列算法的实现，也称为<strong>优先队列算法</strong>。</p>
-<p>附上<a href="https://docs.python.org/zh-cn/3/library/heapq.html">Python3文档</a>。</p>
-<p><strong>heapq</strong>是一个二叉树，它的每个父节点的值都只会小于或等于所有孩子节点（的值）。 它使用了数组来实现：从零开始计数，对于所有的 <em>k</em> ，都有 <code>heap[k] &lt;= heap[2*k+1]</code> 和 <code>heap[k] &lt;= heap[2*k+2]</code>。 为了便于比较，不存在的元素被认为是无限大。 堆最有趣的特性在于最小的元素总是在根结点：<code>heap[0]</code>。</p>
-<p><strong>特点</strong>：</p>
-<ul>
-<li>使用了<strong>从零开始</strong>的索引</li>
-<li>堆为<strong>最小堆</strong></li>
-</ul>
-<h2 id="常用函数">常用函数</h2>
-<ul>
-<li><code>heappush(heap, item)</code>：保持堆的不变性。</li>
-<li><code>heappop(heap)</code>：弹出并返回 <strong>heap</strong> 中最小的元素，保持堆的不变性。</li>
-<li><code>heappushpop(heap, item)</code>：将 <strong>item</strong> 放入堆中，然后弹出并返回 <strong>heap</strong> 的最小元素，虽然先调用 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappush"><code>heappush()</code></a> 再调用 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappop"><code>heappop()</code></a> 也可以，但是这个更快。</li>
-<li><code>heapify(x)</code>：将 <strong>list</strong> x 转换成堆，原地，线性时间</li>
-<li><code>heapreplace(heap, item)</code>：弹出并返回 <strong>heap</strong> 中最小的一项，同时推入新的 <strong>item</strong>。比 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappop"><code>heappop()</code></a> 加 <a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.heappush"><code>heappush()</code></a> 更高效。</li>
-</ul>
-<h2 id="三个基于堆的通用功能函数">三个基于堆的通用功能函数</h2>
-<ul>
-<li>
-<p><code>merge(*iterables, key=None, reverse=False)</code>：将多个已排序的输入合并为一个已排序的输出。类似于 <code>sorted(itertools.chain(*iterables))</code> 但返回一个可迭代对象，不会一次性地将数据全部放入内存，并假定每个输入流都是已排序的（从小到大）。</p>
-<p>具有两个可选参数，它们都必须指定为关键字参数。</p>
-<p><em>key</em> 指定带有单个参数的 <a href="https://docs.python.org/zh-cn/3/glossary.html#term-key-function">key function</a>，用于从每个输入元素中提取比较键。 默认值为 <code>None</code> (直接比较元素)。</p>
-<p><em>reverse</em> 为一个布尔值。 如果设为 <code>True</code>，则输入元素将按比较结果逆序进行合并。</p>
-</li>
-<li>
-<p><code>nlargest</code>(<em>n</em>, <em>iterable</em>, <em>key=None</em>)<a href="https://docs.python.org/zh-cn/3/library/heapq.html#heapq.nlargest">¶</a></p>
-<p>从 <em>iterable</em> 所定义的数据集中返回前 <em>n</em> 个最大元素组成的列表。 如果提供了 <em>key</em> 则其应指定一个单参数的函数，用于从 <em>iterable</em> 的每个元素中提取比较键 (例如 <code>key=str.lower</code>)。 等价于: <code>sorted(iterable, key=key, reverse=True)[:n]</code>。</p>
-</li>
-<li>
-<p><code>nsmallest</code>(<em>n</em>, <em>iterable</em>, <em>key=None</em>)</p>
-<p>从 <em>iterable</em> 所定义的数据集中返回前 <em>n</em> 个最小元素组成的列表。 如果提供了 <em>key</em> 则其应指定一个单参数的函数，用于从 <em>iterable</em> 的每个元素中提取比较键 (例如 <code>key=str.lower</code>)。 等价于: <code>sorted(iterable, key=key)[:n]</code>。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-        <tag>Python</tag>
-        <tag>堆</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>synchronized 和 volatile</title>
     <url>/2021/08/22/synchronized-%E5%92%8C-volatile/</url>
     <content><![CDATA[<h1>synchronized 和 volatile</h1>
@@ -2629,28 +2629,27 @@ Set 接口存储一组互不相同的元素，一个集合中不存在两个相�
       </tags>
   </entry>
   <entry>
-    <title>字节后端开发</title>
-    <url>/2021/10/09/%E5%AD%97%E8%8A%82%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-1/</url>
-    <content><![CDATA[<h1>字节电商后端</h1>
-<p>流程介绍</p>
-<p>自我介绍</p>
-<h3 id="Java">Java</h3>
-<p>HashMap 和 HashTable</p>
-<p>Java concurrentmap 的size如何获取</p>
-<p>Java除了 synch 还有什么锁</p>
-<h3 id="数据库">数据库</h3>
-<p>幻读怎么解决的</p>
-<h3 id="代码">代码</h3>
-<p>数据库两题</p>
-<p>算法一题</p>
-<p>判断二叉搜索树，挺简单，不过测试时建树建出问题了</p>
+    <title>内存泄露与内存溢出</title>
+    <url>/2021/09/01/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/</url>
+    <content><![CDATA[<h3 id="内存泄露与内存溢出">内存泄露与内存溢出</h3>
+<p><strong>内存泄漏</strong>（Memory Leak）是指内存用完没有被释放，即不再被引用的对象没有被 jvm 回收。大量的内存泄漏就会导致OOM，也就是内存溢出。</p>
+<p><strong>内存溢出</strong>（OOM），指需要的内存空间<strong>大于</strong>系统分配的内存空间。</p>
+<p>内存泄露分类：</p>
+<ol>
+<li>常发性泄露：每次执行都导致一块内存泄漏</li>
+<li>偶发性泄露：特定环境或操作过程下才会发生</li>
+<li>一次性泄露：只会被执行一次</li>
+<li>隐式泄露：运行时不停分配内存，但是直到结束时才释放。严格来说并不能算是泄露，但由于<strong>服务器程序</strong>运行较久，不及时释放内存也可能导致耗尽内存。</li>
+</ol>
+<p><strong>内存泄漏最终会导致内存溢出！！！</strong></p>
+<p>内存泄漏本身不会产生什么危害，一般的用户根本感觉不到内存泄漏的存在。真正有危害的是<strong>内存泄漏的堆积</strong>，这会最终消耗尽系统所有的内存。</p>
+<p>从这个角度来说，一次性内存泄漏并没有什么危害，因为它不会堆积，而隐式内存泄漏危害性则非常大，因为较之于常发性和偶发性内存泄漏它<strong>更难被检测到</strong>。</p>
 ]]></content>
       <categories>
         <category>面试</category>
       </categories>
       <tags>
         <tag>面试</tag>
-        <tag>字节</tag>
       </tags>
   </entry>
   <entry>
@@ -2710,27 +2709,28 @@ Set 接口存储一组互不相同的元素，一个集合中不存在两个相�
       </tags>
   </entry>
   <entry>
-    <title>内存泄露与内存溢出</title>
-    <url>/2021/09/01/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/</url>
-    <content><![CDATA[<h3 id="内存泄露与内存溢出">内存泄露与内存溢出</h3>
-<p><strong>内存泄漏</strong>（Memory Leak）是指内存用完没有被释放，即不再被引用的对象没有被 jvm 回收。大量的内存泄漏就会导致OOM，也就是内存溢出。</p>
-<p><strong>内存溢出</strong>（OOM），指需要的内存空间<strong>大于</strong>系统分配的内存空间。</p>
-<p>内存泄露分类：</p>
-<ol>
-<li>常发性泄露：每次执行都导致一块内存泄漏</li>
-<li>偶发性泄露：特定环境或操作过程下才会发生</li>
-<li>一次性泄露：只会被执行一次</li>
-<li>隐式泄露：运行时不停分配内存，但是直到结束时才释放。严格来说并不能算是泄露，但由于<strong>服务器程序</strong>运行较久，不及时释放内存也可能导致耗尽内存。</li>
-</ol>
-<p><strong>内存泄漏最终会导致内存溢出！！！</strong></p>
-<p>内存泄漏本身不会产生什么危害，一般的用户根本感觉不到内存泄漏的存在。真正有危害的是<strong>内存泄漏的堆积</strong>，这会最终消耗尽系统所有的内存。</p>
-<p>从这个角度来说，一次性内存泄漏并没有什么危害，因为它不会堆积，而隐式内存泄漏危害性则非常大，因为较之于常发性和偶发性内存泄漏它<strong>更难被检测到</strong>。</p>
+    <title>字节后端开发</title>
+    <url>/2021/10/09/%E5%AD%97%E8%8A%82%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-1/</url>
+    <content><![CDATA[<h1>字节电商后端</h1>
+<p>流程介绍</p>
+<p>自我介绍</p>
+<h3 id="Java">Java</h3>
+<p>HashMap 和 HashTable</p>
+<p>Java concurrentmap 的size如何获取</p>
+<p>Java除了 synch 还有什么锁</p>
+<h3 id="数据库">数据库</h3>
+<p>幻读怎么解决的</p>
+<h3 id="代码">代码</h3>
+<p>数据库两题</p>
+<p>算法一题</p>
+<p>判断二叉搜索树，挺简单，不过测试时建树建出问题了</p>
 ]]></content>
       <categories>
         <category>面试</category>
       </categories>
       <tags>
         <tag>面试</tag>
+        <tag>字节</tag>
       </tags>
   </entry>
   <entry>
@@ -2884,99 +2884,6 @@ Set 接口存储一组互不相同的元素，一个集合中不存在两个相�
       </tags>
   </entry>
   <entry>
-    <title>异或性质</title>
-    <url>/2020/01/30/%E5%BC%82%E6%88%96%E6%80%A7%E8%B4%A8/</url>
-    <content><![CDATA[<h1>异或</h1>
-<p>异或运算的性质：</p>
-<p><strong>1.</strong> 交换律：A ^ B = B ^ A;</p>
-<p><strong>2.</strong> 结合律：A ^ (B ^ C) = (A ^ B) ^ C;</p>
-<p><strong>3.</strong> 恒等律：X ^ 0 = X;</p>
-<p><strong>4.</strong> 归零律：X ^ X = 0;</p>
-<p><strong>5.</strong> 自反：A ^ B ^ B = A ^ 0 = A;</p>
-<p><strong>6.</strong> 对于任意的 X： X ^ (-1) = ~X；</p>
-<p><strong>7.</strong> 如果 A ^ B = C 成立，那么 A ^ B = C，B ^ C = A；</p>
-<p><strong>8.</strong><img src="https://math.now.sh?inline=%5Cforall%20i%20%5Cin%20Z" style="display:inline-block;margin: 0;"/>，有 <img src="https://math.now.sh?inline=4i%20%5Coplus%20%284i%2B1%29%20%5Coplus%20(4i%2B2)%20%5Coplus%20(4i%2B3)%20%3D%200" style="display:inline-block;margin: 0;"/>。</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>异或</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>布隆过滤器</title>
-    <url>/2021/09/14/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
-    <content><![CDATA[<h1>布隆过滤器</h1>
-<img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/20210914175752.jpeg" alt="kf0ylib9os" style="zoom:67%;" />
-<ol>
-<li>首先需要k个hash函数，每个函数可以把key散列成为1个整数；</li>
-<li>初始化时，需要一个长度为n比特的数组，每个比特位初始化为0；</li>
-<li>某个key加入集合时，用<strong>k个hash函数</strong>计算出k个散列值，并把数组中对应的比特位置为1；</li>
-<li>判断某个key是否在集合时，用k个hash函数计算出k个散列值，并查询数组中对应的比特位，如果所有的比特位都是1，认为在集合中；</li>
-</ol>
-<p><strong>优点：</strong></p>
-<ol>
-<li>空间效率和查询时间都远超一般的算法，布隆过滤器存储空间和插入 / 查询时间都是常数O(k)。</li>
-<li>散列函数相互之间没有关系，方便由硬件并行实现</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>随着存入的元素数量增加，误算率随之增加。但是如果元素数量太少，则使用散列表足矣。</li>
-<li>一般情况下不能从布隆过滤器中删除元素。我们很容易想到把位数组变成整数数组，每插入一个元素相应的计数器加 1, 这样删除元素时将计数器减掉就可以了。然而要保证安全地删除元素并非如此简单。首先我们<strong>必须保证删除的元素的确在布隆过滤器里面</strong>。这一点单凭这个过滤器是无法保证的。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-        <tag>面试</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对象相等的判断，== 和 equal</title>
-    <url>/2020/11/20/%E5%AF%B9%E8%B1%A1%E7%9B%B8%E7%AD%89%E7%9A%84%E5%88%A4%E6%96%AD%EF%BC%8C-%E5%92%8C-equal/</url>
-    <content><![CDATA[<h1>值相等与对象相同</h1>
-<h2 id="Python">Python</h2>
-<p>在<em><strong>python</strong></em>中，我们使用 <strong>==</strong> 来进行判断两个对象的值是否相等，使用<strong>is</strong>来判断两个对象是否是同一个对象。is 是种很特殊的语法，在其它的语言一般不会见到这样的用法。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># int型比较</span><br>a = <span class="hljs-number">1</span><br>b = <span class="hljs-number">1</span><br><br><span class="hljs-built_in">print</span>(a == b)<br><span class="hljs-comment"># 结果为True</span><br><span class="hljs-built_in">print</span>(a <span class="hljs-keyword">is</span> b)<br><span class="hljs-comment"># 结果为True</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># str型比较</span><br>str1 = <span class="hljs-string">&#x27;abc&#x27;</span><br>str2 = <span class="hljs-string">&#x27;abc&#x27;</span><br><br><span class="hljs-built_in">print</span>(str1 == str2)<br><span class="hljs-comment"># 结果为True</span><br><span class="hljs-built_in">print</span>(str1 <span class="hljs-keyword">is</span> str2)<br><span class="hljs-comment"># 结果为True</span><br></code></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 自定类型比较</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">my_obj</span>:</span><br>4atr1 = <span class="hljs-number">0</span><br>4atr2 = <span class="hljs-number">1</span><br>4<br>obj1 = my_obj()<br>obj2 = my_obj()<br> <br><span class="hljs-built_in">print</span>(obj1 == obj2)<br><span class="hljs-comment"># 结果为False</span><br><span class="hljs-built_in">print</span>(obj1 <span class="hljs-keyword">is</span> obj2)<br><span class="hljs-comment"># 结果为False</span><br></code></pre></td></tr></table></figure>
-<h2 id="Java">Java</h2>
-<p>在<em><strong>java</strong></em>中，我们使用 <strong>==</strong> 来判断两个对象是否是同一个对象，而使用<strong>equals</strong>方法来判断两个对象的值是否相等。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test03</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> b = <span class="hljs-number">1</span>;<br>        System.out.println(<span class="hljs-string">&#x27;a&#x27;</span> + <span class="hljs-string">&quot; = &quot;</span> + <span class="hljs-string">&#x27;b&#x27;</span> + <span class="hljs-string">&quot;:&quot;</span> + (a == b));<br>        System.out.println(<span class="hljs-string">&#x27;a&#x27;</span> + <span class="hljs-string">&quot;的地址：&quot;</span> + System.identityHashCode(a));<br>        System.out.println(<span class="hljs-string">&#x27;b&#x27;</span> + <span class="hljs-string">&quot;的地址：&quot;</span> + System.identityHashCode(b));<br><br>        String str1 = <span class="hljs-string">&quot;csdn&quot;</span>;<br>        String str2 = <span class="hljs-string">&quot;csdn&quot;</span>;<br>        <span class="hljs-comment">// str1 和 str2 在常量池中，只有一份，是同一个对象</span><br>        String str3 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;csdn&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot;和&quot;</span> + <span class="hljs-string">&quot;str2&quot;</span> + <span class="hljs-string">&quot;是同一个对象：&quot;</span> + (str1 == str2));<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot; = &quot;</span> + <span class="hljs-string">&quot;str2&quot;</span> + <span class="hljs-string">&#x27;:&#x27;</span> + str1.equals(str2));<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot;和&quot;</span> + <span class="hljs-string">&quot;str3&quot;</span> + <span class="hljs-string">&quot;是同一个对象：&quot;</span> + (str1 == str3));<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot; = &quot;</span> + <span class="hljs-string">&quot;str3&quot;</span> + <span class="hljs-string">&#x27;:&#x27;</span> + str1.equals(str3));<br>    &#125;<br>&#125;<br><br><br><span class="hljs-comment">// 输出结果如下：</span><br><span class="hljs-comment">// a = b:true</span><br><span class="hljs-comment">// a的地址：664223387</span><br><span class="hljs-comment">// b的地址：664223387</span><br><span class="hljs-comment">// str1和str2是同一个对象：true</span><br><span class="hljs-comment">// str1 = str2:true</span><br><span class="hljs-comment">// str1和str3是同一个对象：false</span><br><span class="hljs-comment">// str1 = str3:true</span><br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>找回.py文件右键的Edit with IDLE选项</title>
-    <url>/2020/03/26/%E6%89%BE%E5%9B%9E-py%E6%96%87%E4%BB%B6%E5%8F%B3%E9%94%AE%E7%9A%84Edit-with-IDLE%E9%80%89%E9%A1%B9/</url>
-    <content><![CDATA[<h1>找回.py文件右键的Edit with IDLE选项</h1>
-<p>  通常我们安装Python之后会在**.py<strong>文件的右键菜单中找到</strong>Edit with IDLE<strong>这个选项。今天突然发现右键的</strong>Edit with IDLE<strong>先是点击之后不能打开</strong>.py**文件了，后来干脆就直接没了。虽然平时用的比较少，但是这个IDLE还是很方便的，必须给弄回来。</p>
-<p>  在一通搜索和尝试之后，只发现了修改注册表的方法有用，但是显得有些麻烦，后来发现可以编写一个**.reg**文件来完成这件事情。</p>
-<p>  将下面内容保存到一个**.reg**文件中，注意修改最后一行中Python的安装路径。（注意：注册表中的路径用的是\\来表示\，别写错了）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">Windows Registry Editor Version 5.00<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py]<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell]<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle]<br>&quot;MUIVerb&quot;=&quot;&amp;Edit with IDLE&quot;<br>&quot;Subcommands&quot;=&quot;&quot;<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell]<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37]<br>&quot;MUIVerb&quot;=&quot;Edit with IDLE 3.7&quot;<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37\command]<br>@=&quot;\&quot;D:\\python\\pythonw.exe\&quot; -m idlelib \&quot;%L\&quot; %*&quot;<br></code></pre></td></tr></table></figure>
-<p>  注释版：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">Windows Registry Editor Version 5.00<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py]<br># 在“HKEY_CLASSES_ROOT\SystemFileAssociations”项下创建了一个名为“.py”的项<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell]<br># 在“.py”项下创建了一个名为“shell”的项<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle]<br>&quot;MUIVerb&quot;=&quot;&amp;Edit with IDLE&quot;<br>&quot;Subcommands&quot;=&quot;&quot;<br># 在“shell”项下创建了一个名为“editwithidle”的项。<br># 在“editwithidle”项中创建了：一个名为&quot;MUIVerb&quot;的字符串值，值为&quot;&amp;Edit with IDLE&quot;；一个名为&quot;Subcommands&quot;的空字符串值<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell]<br># 在“editwithidle”项中创建了一个名为“shell”的项<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37]<br>&quot;MUIVerb&quot;=&quot;Edit with IDLE 3.7&quot;<br># 在“shell”项下创建一个名为“edit37”的项<br># 在“edit37”项下创建一个名为&quot;MUIVerb&quot;，值为&quot;Edit with IDLE 3.7&quot; 的字符串值<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37\command]<br>@=&quot;\&quot;D:\\python\\pythonw.exe\&quot; -m idlelib \&quot;%L\&quot; %*&quot;<br># 在“edit37”项创建一个名为“command”的项<br># 将“command”项中的默认值修改为“python安装路径\pythonw.exe\&quot; -m idlelib \&quot;%L\&quot; %*&quot;<br></code></pre></td></tr></table></figure>
-<p>其中<strong>MUIVerb</strong>的值是用来控制显示内容的，可以按照自己的想法去改。</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小米安卓开发</title>
     <url>/2021/09/30/%E5%B0%8F%E7%B1%B3%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h1>小米 Android开发工程师（可接受java方向）</h1>
@@ -3019,6 +2926,99 @@ Set 接口存储一组互不相同的元素，一个集合中不存在两个相�
       <tags>
         <tag>面试</tag>
         <tag>小米</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对象相等的判断，== 和 equal</title>
+    <url>/2020/11/20/%E5%AF%B9%E8%B1%A1%E7%9B%B8%E7%AD%89%E7%9A%84%E5%88%A4%E6%96%AD%EF%BC%8C-%E5%92%8C-equal/</url>
+    <content><![CDATA[<h1>值相等与对象相同</h1>
+<h2 id="Python">Python</h2>
+<p>在<em><strong>python</strong></em>中，我们使用 <strong>==</strong> 来进行判断两个对象的值是否相等，使用<strong>is</strong>来判断两个对象是否是同一个对象。is 是种很特殊的语法，在其它的语言一般不会见到这样的用法。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># int型比较</span><br>a = <span class="hljs-number">1</span><br>b = <span class="hljs-number">1</span><br><br><span class="hljs-built_in">print</span>(a == b)<br><span class="hljs-comment"># 结果为True</span><br><span class="hljs-built_in">print</span>(a <span class="hljs-keyword">is</span> b)<br><span class="hljs-comment"># 结果为True</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># str型比较</span><br>str1 = <span class="hljs-string">&#x27;abc&#x27;</span><br>str2 = <span class="hljs-string">&#x27;abc&#x27;</span><br><br><span class="hljs-built_in">print</span>(str1 == str2)<br><span class="hljs-comment"># 结果为True</span><br><span class="hljs-built_in">print</span>(str1 <span class="hljs-keyword">is</span> str2)<br><span class="hljs-comment"># 结果为True</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 自定类型比较</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">my_obj</span>:</span><br>4atr1 = <span class="hljs-number">0</span><br>4atr2 = <span class="hljs-number">1</span><br>4<br>obj1 = my_obj()<br>obj2 = my_obj()<br> <br><span class="hljs-built_in">print</span>(obj1 == obj2)<br><span class="hljs-comment"># 结果为False</span><br><span class="hljs-built_in">print</span>(obj1 <span class="hljs-keyword">is</span> obj2)<br><span class="hljs-comment"># 结果为False</span><br></code></pre></td></tr></table></figure>
+<h2 id="Java">Java</h2>
+<p>在<em><strong>java</strong></em>中，我们使用 <strong>==</strong> 来判断两个对象是否是同一个对象，而使用<strong>equals</strong>方法来判断两个对象的值是否相等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test03</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> b = <span class="hljs-number">1</span>;<br>        System.out.println(<span class="hljs-string">&#x27;a&#x27;</span> + <span class="hljs-string">&quot; = &quot;</span> + <span class="hljs-string">&#x27;b&#x27;</span> + <span class="hljs-string">&quot;:&quot;</span> + (a == b));<br>        System.out.println(<span class="hljs-string">&#x27;a&#x27;</span> + <span class="hljs-string">&quot;的地址：&quot;</span> + System.identityHashCode(a));<br>        System.out.println(<span class="hljs-string">&#x27;b&#x27;</span> + <span class="hljs-string">&quot;的地址：&quot;</span> + System.identityHashCode(b));<br><br>        String str1 = <span class="hljs-string">&quot;csdn&quot;</span>;<br>        String str2 = <span class="hljs-string">&quot;csdn&quot;</span>;<br>        <span class="hljs-comment">// str1 和 str2 在常量池中，只有一份，是同一个对象</span><br>        String str3 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;csdn&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot;和&quot;</span> + <span class="hljs-string">&quot;str2&quot;</span> + <span class="hljs-string">&quot;是同一个对象：&quot;</span> + (str1 == str2));<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot; = &quot;</span> + <span class="hljs-string">&quot;str2&quot;</span> + <span class="hljs-string">&#x27;:&#x27;</span> + str1.equals(str2));<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot;和&quot;</span> + <span class="hljs-string">&quot;str3&quot;</span> + <span class="hljs-string">&quot;是同一个对象：&quot;</span> + (str1 == str3));<br>        System.out.println(<span class="hljs-string">&quot;str1&quot;</span> + <span class="hljs-string">&quot; = &quot;</span> + <span class="hljs-string">&quot;str3&quot;</span> + <span class="hljs-string">&#x27;:&#x27;</span> + str1.equals(str3));<br>    &#125;<br>&#125;<br><br><br><span class="hljs-comment">// 输出结果如下：</span><br><span class="hljs-comment">// a = b:true</span><br><span class="hljs-comment">// a的地址：664223387</span><br><span class="hljs-comment">// b的地址：664223387</span><br><span class="hljs-comment">// str1和str2是同一个对象：true</span><br><span class="hljs-comment">// str1 = str2:true</span><br><span class="hljs-comment">// str1和str3是同一个对象：false</span><br><span class="hljs-comment">// str1 = str3:true</span><br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>异或性质</title>
+    <url>/2020/01/30/%E5%BC%82%E6%88%96%E6%80%A7%E8%B4%A8/</url>
+    <content><![CDATA[<h1>异或</h1>
+<p>异或运算的性质：</p>
+<p><strong>1.</strong> 交换律：A ^ B = B ^ A;</p>
+<p><strong>2.</strong> 结合律：A ^ (B ^ C) = (A ^ B) ^ C;</p>
+<p><strong>3.</strong> 恒等律：X ^ 0 = X;</p>
+<p><strong>4.</strong> 归零律：X ^ X = 0;</p>
+<p><strong>5.</strong> 自反：A ^ B ^ B = A ^ 0 = A;</p>
+<p><strong>6.</strong> 对于任意的 X： X ^ (-1) = ~X；</p>
+<p><strong>7.</strong> 如果 A ^ B = C 成立，那么 A ^ B = C，B ^ C = A；</p>
+<p><strong>8.</strong><img src="https://math.now.sh?inline=%5Cforall%20i%20%5Cin%20Z" style="display:inline-block;margin: 0;"/>，有 <img src="https://math.now.sh?inline=4i%20%5Coplus%20%284i%2B1%29%20%5Coplus%20(4i%2B2)%20%5Coplus%20(4i%2B3)%20%3D%200" style="display:inline-block;margin: 0;"/>。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>异或</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>找回.py文件右键的Edit with IDLE选项</title>
+    <url>/2020/03/26/%E6%89%BE%E5%9B%9E-py%E6%96%87%E4%BB%B6%E5%8F%B3%E9%94%AE%E7%9A%84Edit-with-IDLE%E9%80%89%E9%A1%B9/</url>
+    <content><![CDATA[<h1>找回.py文件右键的Edit with IDLE选项</h1>
+<p>  通常我们安装Python之后会在**.py<strong>文件的右键菜单中找到</strong>Edit with IDLE<strong>这个选项。今天突然发现右键的</strong>Edit with IDLE<strong>先是点击之后不能打开</strong>.py**文件了，后来干脆就直接没了。虽然平时用的比较少，但是这个IDLE还是很方便的，必须给弄回来。</p>
+<p>  在一通搜索和尝试之后，只发现了修改注册表的方法有用，但是显得有些麻烦，后来发现可以编写一个**.reg**文件来完成这件事情。</p>
+<p>  将下面内容保存到一个**.reg**文件中，注意修改最后一行中Python的安装路径。（注意：注册表中的路径用的是\\来表示\，别写错了）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">Windows Registry Editor Version 5.00<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py]<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell]<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle]<br>&quot;MUIVerb&quot;=&quot;&amp;Edit with IDLE&quot;<br>&quot;Subcommands&quot;=&quot;&quot;<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell]<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37]<br>&quot;MUIVerb&quot;=&quot;Edit with IDLE 3.7&quot;<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37\command]<br>@=&quot;\&quot;D:\\python\\pythonw.exe\&quot; -m idlelib \&quot;%L\&quot; %*&quot;<br></code></pre></td></tr></table></figure>
+<p>  注释版：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">Windows Registry Editor Version 5.00<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py]<br># 在“HKEY_CLASSES_ROOT\SystemFileAssociations”项下创建了一个名为“.py”的项<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell]<br># 在“.py”项下创建了一个名为“shell”的项<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle]<br>&quot;MUIVerb&quot;=&quot;&amp;Edit with IDLE&quot;<br>&quot;Subcommands&quot;=&quot;&quot;<br># 在“shell”项下创建了一个名为“editwithidle”的项。<br># 在“editwithidle”项中创建了：一个名为&quot;MUIVerb&quot;的字符串值，值为&quot;&amp;Edit with IDLE&quot;；一个名为&quot;Subcommands&quot;的空字符串值<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell]<br># 在“editwithidle”项中创建了一个名为“shell”的项<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37]<br>&quot;MUIVerb&quot;=&quot;Edit with IDLE 3.7&quot;<br># 在“shell”项下创建一个名为“edit37”的项<br># 在“edit37”项下创建一个名为&quot;MUIVerb&quot;，值为&quot;Edit with IDLE 3.7&quot; 的字符串值<br><br>[HKEY_CLASSES_ROOT\SystemFileAssociations\.py\shell\editwithidle\shell\edit37\command]<br>@=&quot;\&quot;D:\\python\\pythonw.exe\&quot; -m idlelib \&quot;%L\&quot; %*&quot;<br># 在“edit37”项创建一个名为“command”的项<br># 将“command”项中的默认值修改为“python安装路径\pythonw.exe\&quot; -m idlelib \&quot;%L\&quot; %*&quot;<br></code></pre></td></tr></table></figure>
+<p>其中<strong>MUIVerb</strong>的值是用来控制显示内容的，可以按照自己的想法去改。</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>布隆过滤器</title>
+    <url>/2021/09/14/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+    <content><![CDATA[<h1>布隆过滤器</h1>
+<img src="https://raw.githubusercontent.com/xianyuerrr/PicGo/main/img/20210914175752.jpeg" alt="kf0ylib9os" style="zoom:67%;" />
+<ol>
+<li>首先需要k个hash函数，每个函数可以把key散列成为1个整数；</li>
+<li>初始化时，需要一个长度为n比特的数组，每个比特位初始化为0；</li>
+<li>某个key加入集合时，用<strong>k个hash函数</strong>计算出k个散列值，并把数组中对应的比特位置为1；</li>
+<li>判断某个key是否在集合时，用k个hash函数计算出k个散列值，并查询数组中对应的比特位，如果所有的比特位都是1，认为在集合中；</li>
+</ol>
+<p><strong>优点：</strong></p>
+<ol>
+<li>空间效率和查询时间都远超一般的算法，布隆过滤器存储空间和插入 / 查询时间都是常数O(k)。</li>
+<li>散列函数相互之间没有关系，方便由硬件并行实现</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>随着存入的元素数量增加，误算率随之增加。但是如果元素数量太少，则使用散列表足矣。</li>
+<li>一般情况下不能从布隆过滤器中删除元素。我们很容易想到把位数组变成整数数组，每插入一个元素相应的计数器加 1, 这样删除元素时将计数器减掉就可以了。然而要保证安全地删除元素并非如此简单。首先我们<strong>必须保证删除的元素的确在布隆过滤器里面</strong>。这一点单凭这个过滤器是无法保证的。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>面试</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
