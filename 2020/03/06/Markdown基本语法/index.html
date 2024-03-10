@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 5.4.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="[object Object]">
+  
+
+  
+
+  
+
+  <title>Markdown基本语法 | xianyue の blog</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/OneDrive/图片/pixiv/80143041_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          xianyue の blog
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">Markdown基本语法</h1>
+          <h2 class="title-sub-wrap">
+            <strong>[object Object]</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2020-03-06T09:08:04.000Z" itemprop="datePublished">2020-03-06</time>
+          </h2>
+          
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2024-03-08T16:01:35.398Z" itemprop="dateUpdated">2024-03-09</time>
+            </h2>
+          
+          
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/Markdown/">📒 Markdown</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Markdown/">🏷️ Markdown</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h1>Markdown 基础</h1>
+<h2 id="1-准备">1 准备</h2>
+<h3 id="1-1-前言">1.1 前言</h3>
+<p>  最近在看书，突然了解到了一个比较有意思并且有用的语言：<strong>Markdown</strong>。这个语言是用在 <strong>.md</strong> 文件的编写上的。可以比较容易的使用纯文本格式编写出十分美观的文档。</p>
+<p>  之前，我准备在 <strong>CSDN</strong> 上写博客的时候，看到写一个博客竟然和写代码一样，还要学习一门新语言，我立马就被劝退了。不过在前两天了解了 <strong>Markdown</strong> 语言之后，才发现这还挺好用。不仅简单，而且对于图片、图表、数学式都有支持。回过头来，突然发现我们的<strong>CSDN</strong>也支持使用 <strong>Markdown</strong> 语言来写博客文章，当初我竟然被这么个语言给劝退了…<br>
+<img src="https://img-blog.csdnimg.cn/20201010230612761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzODc0ODM0,size_16,color_FFFFFF,t_70#pic_center" width="80%" alt="截图" align=center /></p>
+<p>  网上已经有很多十分优秀的 <strong>Markdown</strong> 语言教程了，比如<a target="_blank" rel="noopener" href="https://www.runoob.com">菜鸟教程</a>的 <strong>Markdown</strong> 教程。本篇只是记录自己的学习过程，如有错误，还望大家海涵。若能指出错误，在下将十分感激！</p>
+<hr>
+<h3 id="1-2-编辑器选择">1.2 编辑器选择</h3>
+<p>  作为新手，如果你使用纯文本编辑器，比如记事本，带来的问题可不仅仅是不方便这么简单。更致命的一点是在纯文本编辑器中使用 <strong>Markdown</strong> 语言没有即时预览功能，你无法直观的感受到你写出的文档最终会以什么样子呈现出来。所以我比较推荐大家使用具有即使预览功能的编辑器，比如我目前使用的<a target="_blank" rel="noopener" href="https://typora.io/">Typora</a>，我觉得就是一款很棒的<strong>Markdown</strong>语言编辑器。由于我刚开始学习，用过的编辑器也不多，不能给出更多的推荐了。</p>
+<p>  如果你平常使用<strong>Sublime Text</strong>或者 <strong>VsCode</strong> ，他们虽然没有自带即时预览的功能，但是他们有着十分强大、丰富的社区，你可以通过一系列的折腾来武装你的编辑器，来使他们能够很好的支持你对于<strong>Markdown</strong>语言的使用，这些操作的教程以级实例在网络上可以轻松的找到。其他类似的编辑器也可以进行类似的操作。</p>
+<h2 id="2-语法">2 语法</h2>
+<h3 id="2-1标题">2.1标题</h3>
+<p>使用 <strong>#</strong> 号可表示标题，一级标题对应一个 <strong>#</strong> 号，二级标题对应两个 <strong>#</strong> 号，以此类推。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 一级标题</span><br><span class="hljs-section">## 二级标题</span><br><span class="hljs-section">### 三级标题</span><br><span class="hljs-section">#### 四级标题</span><br></code></pre></td></tr></table></figure>
+<p><em>效果如下：</em></p>
+<img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/Roaming/Typora/typora-user-images/image-20210127173350005.png" style="zoom:50%;" />
+<p>在编辑器Typora里可以使用**Ctrl+[0-6]**来快速设置格式，<strong>Ctrl+0</strong>是设置成段落，1到6是设置成各级标题。</p>
+<h3 id="2-2-段落样式">2.2 段落样式</h3>
+<h4 id="2-2-1-字体">2.2.1 字体</h4>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">Markdown可以使用以下几种字体：<br><span class="hljs-emphasis">*斜体文本*</span><br><span class="hljs-emphasis">_斜体文本_</span><br><span class="hljs-strong">**粗体文本**</span><br><span class="hljs-strong">__粗体文本__</span><br><span class="hljs-strong">**<span class="hljs-emphasis">*粗斜体文本<span class="hljs-strong">**<span class="hljs-emphasis">*</span></span></span></span><br><span class="hljs-emphasis"><span class="hljs-strong"><span class="hljs-emphasis"><span class="hljs-strong"><span class="hljs-strong">__<span class="hljs-emphasis">_粗斜体文本<span class="hljs-strong">__<span class="hljs-emphasis">_</span></span></span></span></span></span></span></span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><em>斜体文本</em></p>
+<p><em>斜体文本</em></p>
+<p><strong>粗体文本</strong></p>
+<p><strong>粗体文本</strong></p>
+<p><em><strong>粗斜体文本</strong></em></p>
+<p><em><strong>粗斜体文本</strong></em></p>
+<h4 id="2-2-2-修饰">2.2.2 修饰</h4>
+<p>(1) 分隔线</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">一行内三个以上的星号(<span class="hljs-emphasis">*)、减号(-)、底线(_)，行内不能有其他东西。</span><br><span class="hljs-emphasis">如：<span class="hljs-strong">**<span class="hljs-emphasis">*</span></span></span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<hr>
+<p>(2) 删除线</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">文字两端加上两个波浪线~<br>~~xianyue~~<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><s>xianyue</s></p>
+<p>(3) 下划线</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">使用HTML的<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span></span>标签实现<br>如：<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span></span>xianyue<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><u>xianyue</u></p>
+<p>(4) 脚注</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">使用[^文本]的格式实现脚注<br>如：脚注[^xinayue]: xianyue<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p>脚注[^xinayue]</p>
+<h3 id="2-3-元素">2.3 元素</h3>
+<h4 id="2-3-1-列表">2.3.1 列表</h4>
+<p>(1) 无序列表</p>
+<p>无序列表使用星号(*)、加号(+)或是减号(-)作为列表标记，这些标记后面要添加一个空格，然后再填写内容。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">如：<br><span class="hljs-bullet">*</span> 第一项<br><span class="hljs-bullet">*</span> 第二项<br><span class="hljs-bullet">*</span> 第三项<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+<p>(2) 有序列表</p>
+<p>有序列表使用数字并加上 <strong>.</strong> 号来表示。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">如：<br><span class="hljs-bullet">1.</span> 第一项<br><span class="hljs-bullet">2.</span> 第二项<br><span class="hljs-bullet">3.</span> 第三项<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+<h4 id="2-3-2-区块">2.3.2 区块</h4>
+<p>区块引用是在段落开头使用 <strong>&gt;</strong> 符号 ，然后后面紧跟一个<strong>空格</strong>。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; 最外层</span><br><span class="hljs-quote">&gt; &gt; 第一层嵌套</span><br><span class="hljs-quote">&gt; &gt; &gt; 第二层嵌套</span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<blockquote>
+<p>最外层</p>
+<blockquote>
+<p>第一层嵌套</p>
+<blockquote>
+<p>第二层嵌套</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h4 id="2-3-3-代码">2.3.3 代码</h4>
+<p>(1) 段内短代码</p>
+<p>可以用反引号把它包起来（<strong>`</strong>）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">如：<br>`print(&quot;HelloWorld!&quot;)`Python代码<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><code>print(&quot;HelloWorld!&quot;)</code>Python代码</p>
+<p>(2) 代码区块</p>
+<p>用 <strong>```</strong> 包裹一段代码，并指定一种语言（也可以不指定）。本文多处都在此种方式创造的代码区块内进行说明（比如下面这个区块）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">如：<br>​```python<br>print(&quot;HelloWorld!&quot;)<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;HelloWorld!&quot;</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="2-3-4-链接">2.3.4 链接</h4>
+<p>(1) 通过网址来设置一个链接</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">链接名称</span>](<span class="hljs-link">链接地址</span>)<br>如：<br>[<span class="hljs-string">百度</span>](<span class="hljs-link">http://www.baidu.com</span>)<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com">百度</a></p>
+<p>(2) 直接使用链接地址</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="xml">&lt;http://www.baidu.com&gt;</span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com">http://www.baidu.com</a></p>
+<p>PS：可以使用如下方式达到<code>&lt;http://www.baidu.com&gt;</code>的效果。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">http://www.baidu.com</span>](<span class="hljs-link">http://www.baidu.com</span>)<br></code></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com">http://www.baidu.com</a></p>
+<p>(3) 通过变量来设置一个链接</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">百度</span>][<span class="hljs-symbol">1</span>]<br>[<span class="hljs-symbol">1</span>]:<span class="hljs-link">http://www.baidu.com</span><br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com">百度</a></p>
+<h4 id="2-3-5-图片">2.3.5 图片</h4>
+<p>(1) Markdown方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">![alt 属性文本](图片地址 &quot;可选标题&quot;)<br>这种方式无法指定图片的高度与宽度<br>如：<br>![alt 刻晴](https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/AppData/Roaming/picgo/20210127182153.png &quot;刻晴&quot;)<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/AppData/Roaming/picgo/20210127182153.png" alt="alt 刻晴" title="刻晴" style="zoom:50%;" />
+<p>(2) HTML方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&lt;img src=&quot;https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/AppData/Roaming/picgo/20210127182153.png&quot; alt=&quot;alt 刻晴&quot; title=&quot;刻晴&quot; style=&quot;zoom: 25%;&quot; /&gt;<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/AppData/Roaming/picgo/20210127182153.png" alt="alt 刻晴" title="刻晴" style="zoom: 25%;" />
+<h4 id="2-3-6-表格">2.3.6 表格</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">使用 | 来分隔不同的单元格，使用 - 来分隔表头和其他行。<br>如：<br>|  ID   | Password  |<br>|  ----  | ----  |<br>| a  | 123 |<br>| b  | 456 |<br></code></pre></td></tr></table></figure>
+<p>效果如下（默认左对齐）：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>123</td>
+</tr>
+<tr>
+<td>b</td>
+<td>456</td>
+</tr>
+</tbody>
+</table>
+<p>可以设置表格的对齐方式：</p>
+<ol>
+<li>“-:”右对齐</li>
+<li>“:-”左对齐</li>
+<li>“:-:”居中</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">如：<br>|  ID   | Password  |<br>|  ----:  | ----:  |<br>| a  | 123 |<br>| b  | 456 |<br></code></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">ID</th>
+<th style="text-align:right">Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">a</td>
+<td style="text-align:right">123</td>
+</tr>
+<tr>
+<td style="text-align:right">b</td>
+<td style="text-align:right">456</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-高级技巧">3 高级技巧</h2>
+<h3 id="3-1-HTML支持">3.1 HTML支持</h3>
+<p>前面我们已经在<strong>Markdown</strong>里使用了<strong>HTML</strong>标签，其实许多<strong>HTML</strong>标签在<strong>Markdown</strong>都能支持。其实，<strong>Markdown</strong>的表现格式是可以通过<strong>CSS</strong>来进行更改的，<strong>Typora</strong>里的众多主体就是通过使用不同的<strong>CSS</strong>文件来达成的。还有，你如果在<strong>Typora</strong>里打开了调试模式，右键点击<strong>检查元素</strong>，然后你会发现这和网页源代码有着惊人的相似度。这也就不难想象<strong>Markdown</strong>与<strong>HTML</strong>、<strong>CSS</strong>之间的密切联系了。</p>
+<h3 id="3-2-转义">3.2 转义</h3>
+<p>Markdown 使用了很多特殊符号来表示特定的意义，如果需要显示特定的符号则需要使用转义字符，Markdown 使用反斜杠转义特殊字符。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">\   反斜线<br>`   反引号<br>*   星号<br>_   下划线<br>&#123;&#125;  花括号<br>[]  方括号<br>()  小括号<br>#   井字号<br>+   加号<br>-   减号<br>.   英文句点<br>!   感叹号<br></code></pre></td></tr></table></figure>
+<h3 id="3-3-Tex支持">3.3 Tex支持</h3>
+<p>当你需要在编辑器中插入数学公式时，可以使用美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式来实现。提交后，问答和文章页会根据需要加载 Mathjax 对数学公式进行渲染。</p>
+<p>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">$$<br>\mathbf&#123;V&#125;_1 \times \mathbf&#123;V&#125;_2 =  \begin&#123;vmatrix&#125; <br>\mathbf&#123;i&#125; &amp; \mathbf&#123;j&#125; &amp; \mathbf&#123;k&#125; \\<br>\frac&#123;\partial X&#125;&#123;\partial u&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial u&#125; &amp; 0 \\<br>\frac&#123;\partial X&#125;&#123;\partial v&#125; &amp;  \frac&#123;\partial Y&#125;&#123;\partial v&#125; &amp; 0 \\<br>\end&#123;vmatrix&#125;<br>$$<br></code></pre></td></tr></table></figure>
+<p style=""><img src="https://math.now.sh?from=%5Cmathbf%7BV%7D_1%20%5Ctimes%20%5Cmathbf%7BV%7D_2%20%3D%20%20%5Cbegin%7Bvmatrix%7D%20%0A%5Cmathbf%7Bi%7D%20%26%20%5Cmathbf%7Bj%7D%20%26%20%5Cmathbf%7Bk%7D%20%5C%5C%0A%5Cfrac%7B%5Cpartial%20X%7D%7B%5Cpartial%20u%7D%20%26%20%20%5Cfrac%7B%5Cpartial%20Y%7D%7B%5Cpartial%20u%7D%20%26%200%20%5C%5C%0A%5Cfrac%7B%5Cpartial%20X%7D%7B%5Cpartial%20v%7D%20%26%20%20%5Cfrac%7B%5Cpartial%20Y%7D%7B%5Cpartial%20v%7D%20%26%200%20%5C%5C%0A%5Cend%7Bvmatrix%7D%0A" /></p><h2 id="附录-：">附录 ：</h2>
+<h3 id="1、横向流程图：">1、横向流程图：</h3>
+<pre class="mermaid">graph LR
+A[方形] -->B(圆角)
+    B --> C{条件a}
+    C -->|a=1| D[结果1]
+    C -->|a=2| E[结果2]
+    F[横向流程图]</pre>
+<h3 id="2、竖向流程图">2、竖向流程图</h3>
+<pre class="mermaid">graph TD
+A[方形] --> B(圆角)
+    B --> C{条件a}
+    C --> |a=1| D[结果1]
+    C --> |a=2| E[结果2]
+    F[竖向流程图]</pre>
+<h3 id="3、标准流程图">3、标准流程图</h3>
+<div id="flowchart-0" class="flow-chart"></div>
+<div id="flowchart-1" class="flow-chart"></div>
+<h3 id="4、-UML时序图">4、 UML时序图</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sequence">对象A-&gt;对象B: 对象B你好吗?（请求）<br>Note right of 对象B: 对象B的描述<br>Note left of 对象A: 对象A的描述(提示)<br>对象B--&gt;对象A: 我很好(响应)<br>对象A-&gt;对象B: 你真的好吗？<br></code></pre></td></tr></table></figure>
+<h3 id="5、标准UML时序图">5、标准UML时序图</h3>
+<pre class="mermaid">%% 时序图例子,-> 直线，-->虚线，->>实线箭头
+  sequenceDiagram
+    participant 张三
+    participant 李四
+    张三->王五: 王五你好吗？
+    loop 健康检查
+        王五->王五: 与疾病战斗
+    end
+    Note right of 王五: 合理 食物 <br/>看医生...
+    李四-->>张三: 很好!
+    王五->李四: 你怎么样?
+    李四-->王五: 很好!</pre>
+<h3 id="6、甘特图">6、甘特图</h3>
+<pre class="mermaid">%% 语法示例
+        gantt
+        dateFormat  YYYY-MM-DD
+        title 软件开发甘特图
+        section 设计
+        需求                      :done,    des1, 2014-01-06,2014-01-08
+        原型                      :active,  des2, 2014-01-09, 3d
+        UI设计                     :         des3, after des2, 5d
+    未来任务                     :         des4, after des3, 5d
+        section 开发
+        学习准备理解需求                      :crit, done, 2014-01-06,24h
+        设计框架                             :crit, done, after des2, 2d
+        开发                                 :crit, active, 3d
+        未来任务                              :crit, 5d
+        耍                                   :2d
+        section 测试
+        功能测试                              :active, a1, after des3, 3d
+        压力测试                               :after a1  , 20h
+        测试报告                               : 48h</pre>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: 开始框
+op=>operation: 处理框
+cond=>condition: 判断框(是或否?)
+sub1=>subroutine: 子流程
+io=>inputoutput: 输入输出框
+e=>end: 结束框
+st->op->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script><textarea id="flowchart-1-code" style="display: none">st=>start: 开始框
+op=>operation: 处理框
+cond=>condition: 判断框(是或否?)
+sub1=>subroutine: 子流程
+io=>inputoutput: 输入输出框
+e=>end: 结束框
+st(right)->op(right)->cond
+cond(yes)->io(bottom)->e
+cond(no)->sub1(right)->op</textarea><textarea id="flowchart-1-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-1-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-1-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-1", options);</script>
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/Pictures/pixiv/3/73286489.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2020/03/26/%E6%89%BE%E5%9B%9E-py%E6%96%87%E4%BB%B6%E5%8F%B3%E9%94%AE%E7%9A%84Edit-with-IDLE%E9%80%89%E9%A1%B9/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">找回.py文件右键的Edit with IDLE选项</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/OneDrive/图片/pixiv/81320250_p0.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2020/01/30/%E5%BC%82%E6%88%96%E6%80%A7%E8%B4%A8/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">异或性质</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/picgo/71852423.jpg" class="soft-size--round soft-style--box" alt="xianyue">
+    
+    
+      <h2>xianyue</h2>
+    
+    
+      <p>日复一日，必有精进</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>54</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        9
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        36
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widget-toc widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-toc" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M134.50666666 767.46666668H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.23999999v50.13333333c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H134.50666666c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.13333333c0.10666668-27.73333333 22.50666668-50.24000001 50.24000001-50.24000001zM84.37333332 541.65333333h326.18666669c27.73333333 0 50.24000001 22.39999999 50.23999999 50.13333334v50.24000001c0 27.73333333-22.50666668 50.24000001-50.24000002 50.23999999H84.37333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.23999999v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333334zM134.50666666 315.83999999H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.24000001v50.24000001c0 27.73333333-22.50666668 50.13333334-50.24000001 50.13333333H134.50666666c-27.73333333 0-50.24000001-22.39999999-50.23999999-50.13333333v-50.24000001c0.10666668-27.84000001 22.50666668-50.24000001 50.24000001-50.23999999zM209.81333332 89.91999999h326.18666671c27.73333333 0 50.24000001 22.39999999 50.23999997 50.13333335v50.23999999c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H209.81333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333333zM692.05333333 623.36l274.66666669 176.00000002c23.36000001 14.93333333 30.08 45.97333334 15.14666666 69.33333332L954.77333334 910.93333333c-14.93333333 23.25333334-45.97333334 30.08-69.33333335 15.14666667l-274.66666666-176c-23.36000001-14.93333333-30.08-45.97333334-15.14666667-69.33333333l27.09333334-42.24000001c14.93333333-23.36000001 46.08000001-30.08 69.33333333-15.14666666z" fill="currentColor"></path>
+</svg>
+    <span>TOC</span>
+  </div>
+  <div class="widget-body">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87"><span class="toc-number">1.</span> <span class="toc-text">1 准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%BC%96%E8%BE%91%E5%99%A8%E9%80%89%E6%8B%A9"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 编辑器选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2 语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E6%A0%87%E9%A2%98"><span class="toc-number">2.1.</span> <span class="toc-text">2.1标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%AE%B5%E8%90%BD%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 段落样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%83%E7%B4%A0"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 元素</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7"><span class="toc-number">3.</span> <span class="toc-text">3 高级技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-HTML%E6%94%AF%E6%8C%81"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 HTML支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%BD%AC%E4%B9%89"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 转义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Tex%E6%94%AF%E6%8C%81"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 Tex支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95-%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">附录 ：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%A8%AA%E5%90%91%E6%B5%81%E7%A8%8B%E5%9B%BE%EF%BC%9A"><span class="toc-number">4.1.</span> <span class="toc-text">1、横向流程图：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E7%AB%96%E5%90%91%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">4.2.</span> <span class="toc-text">2、竖向流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%A0%87%E5%87%86%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">4.3.</span> <span class="toc-text">3、标准流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81-UML%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">4.4.</span> <span class="toc-text">4、 UML时序图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%A0%87%E5%87%86UML%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">4.5.</span> <span class="toc-text">5、标准UML时序图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E7%94%98%E7%89%B9%E5%9B%BE"><span class="toc-number">4.6.</span> <span class="toc-text">6、甘特图</span></a></li></ol></li></ol>
+  </div>
+</section>
+
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Code/">
+            Code (35)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E9%98%85%E8%AF%BB/">
+            阅读 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+            计算机 (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Markdown/">
+            Markdown (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Tools/">
+            Tools (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/hexo%E9%85%8D%E7%BD%AE/">
+            hexo配置 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">
+            未分类 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E9%9D%A2%E8%AF%95/">
+            面试 (6)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Byte/" style="font-size: 10px;" class="tags-cloud-0">Byte</a> <a href="/tags/C/" style="font-size: 16.25px;" class="tags-cloud-6">C++</a> <a href="/tags/Default/" style="font-size: 10px;" class="tags-cloud-0">Default</a> <a href="/tags/Go/" style="font-size: 10px;" class="tags-cloud-0">Go</a> <a href="/tags/Java/" style="font-size: 20px;" class="tags-cloud-10">Java</a> <a href="/tags/Jupyter/" style="font-size: 10px;" class="tags-cloud-0">Jupyter</a> <a href="/tags/Linux/" style="font-size: 11.25px;" class="tags-cloud-1">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;" class="tags-cloud-0">Markdown</a> <a href="/tags/Maven/" style="font-size: 11.25px;" class="tags-cloud-1">Maven</a> <a href="/tags/MySQL/" style="font-size: 10px;" class="tags-cloud-0">MySQL</a> <a href="/tags/Python/" style="font-size: 17.5px;" class="tags-cloud-8">Python</a> <a href="/tags/Redis/" style="font-size: 10px;" class="tags-cloud-0">Redis</a> <a href="/tags/STL/" style="font-size: 10px;" class="tags-cloud-0">STL</a> <a href="/tags/bit/" style="font-size: 10px;" class="tags-cloud-0">bit</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/host/" style="font-size: 10px;" class="tags-cloud-0">host</a> <a href="/tags/math/" style="font-size: 11.25px;" class="tags-cloud-1">math</a> <a href="/tags/pip/" style="font-size: 10px;" class="tags-cloud-0">pip</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 10px;" class="tags-cloud-0">二分</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;" class="tags-cloud-0">位运算</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 10px;" class="tags-cloud-0">刷题</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;" class="tags-cloud-0">垃圾回收</a> <a href="/tags/%E5%A0%86/" style="font-size: 11.25px;" class="tags-cloud-1">堆</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 11.25px;" class="tags-cloud-1">多线程</a> <a href="/tags/%E5%AD%97%E8%8A%82/" style="font-size: 12.5px;" class="tags-cloud-3">字节</a> <a href="/tags/%E5%B0%8F%E7%B1%B3/" style="font-size: 10px;" class="tags-cloud-0">小米</a> <a href="/tags/%E5%BC%82%E6%88%96/" style="font-size: 10px;" class="tags-cloud-0">异或</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" style="font-size: 10px;" class="tags-cloud-0">技术书籍阅读</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.25px;" class="tags-cloud-1">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;" class="tags-cloud-5">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.75px;" class="tags-cloud-4">算法</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 11.25px;" class="tags-cloud-1">计网</a> <a href="/tags/%E8%AE%A1%E7%BD%91-%E9%9D%A2%E8%AF%95/" style="font-size: 10px;" class="tags-cloud-0">计网 - 面试</a> <a href="/tags/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" style="font-size: 11.25px;" class="tags-cloud-1">输入输出</a> <a href="/tags/%E9%9A%8F%E6%9C%BA/" style="font-size: 10px;" class="tags-cloud-0">随机</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 18.75px;" class="tags-cloud-9">面试</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2024 <a href="/" target="_blank">[object Object]</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+</html>

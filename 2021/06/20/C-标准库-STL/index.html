@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 5.4.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="[object Object]">
+  
+
+  
+
+  
+
+  <title>C++ 标准库 STL | xianyue の blog</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/OneDrive/图片/壁纸/431960_screenshots_20200313005358_1.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          xianyue の blog
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">C++ 标准库 STL</h1>
+          <h2 class="title-sub-wrap">
+            <strong>[object Object]</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2021-06-20T15:41:10.000Z" itemprop="datePublished">2021-06-20</time>
+          </h2>
+          
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2024-03-10T13:27:01.750Z" itemprop="dateUpdated">2024-03-10</time>
+            </h2>
+          
+          
+          <ul class="wrap-list dark">
+  
+    <li><a href="/categories/Code/">📒 Code</a></li>
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">🏷️ 数据结构</a></li>
+  
+    <li><a href="/tags/C/">🏷️ C++</a></li>
+  
+    <li><a href="/tags/STL/">🏷️ STL</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h1>C++标准库STL</h1>
+<h2 id="一、vector">一、vector</h2>
+<p>向量，变长数组</p>
+<p>可以以邻接表方式存储图（结点数太多的不行）</p>
+<h3 id="1、定义">1、定义</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">// 定义</span><br>vector&lt;<span class="hljs-keyword">typename</span>&gt; name;<br>vector&lt;<span class="hljs-keyword">typename</span>&gt; arrayname[arraysize];<br><span class="hljs-comment">// 与vector&lt;vector&lt;int&gt; &gt;name;不同的是，这种写法的一维长度已经固定位arraysize，另一维才是变长的。</span><br><br><span class="hljs-comment">// typename可以是任何基本类型</span><br><span class="hljs-comment">// 也可以是STL标准容器，这种的要在定义时在 &gt;&gt; 符号之间加上空格（C++11之前的编译器会将其视为移位操作，导致编译错误）</span><br><br><span class="hljs-comment">// e.g.:</span><br>vector&lt;<span class="hljs-keyword">int</span>&gt; name;<br>vector&lt;node&gt; name; <span class="hljs-comment">// node为结构体</span><br>vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; name; <span class="hljs-comment">// &gt;&gt;之间要加空格</span><br>vector&lt;vector&lt;<span class="hljs-keyword">int</span>&gt; &gt; name;<br><br></code></pre></td></tr></table></figure>
+<h3 id="2、访问">2、访问</h3>
+<p>下标访问或通过迭代器访问</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">vector&lt;<span class="hljs-keyword">int</span>&gt; vi;<br>vector&lt;<span class="hljs-keyword">int</span>&gt;::iterator it = vi.<span class="hljs-built_in">begin</span>();<br><span class="hljs-keyword">for</span>(vector&lt;<span class="hljs-keyword">int</span>&gt;::iterator it=vi.<span class="hljs-built_in">begin</span>();it!=vi.<span class="hljs-built_in">end</span>();it++)&#123;<br>4<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,*it);<br>&#125;<br><span class="hljs-comment">// vi[i] 和 *(vi.begin() + i) 是等价的</span><br><span class="hljs-comment">// 允许 i++， ++i</span><br></code></pre></td></tr></table></figure>
+<p>在STL容器中，只有<strong>vector</strong>和<strong>string</strong>允许使用vi.begin()+4这种<strong>迭代器+整数</strong>的写法。</p>
+<h3 id="3、常用函数">3、常用函数</h3>
+<p><strong>1、push_back()</strong></p>
+<p><code>push_back(x)</code>就是在vector后面添加一个元素x</p>
+<p><strong>2、pop_back()</strong></p>
+<p><code>pop_back(x)</code>用以删除vector的尾元素</p>
+<p><strong>3、insert()</strong></p>
+<p><code>insert(it, x)</code>用来向vector的任意迭代器it处插入一个元素x</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">vi.<span class="hljs-built_in">insert</span>(vi.<span class="hljs-built_in">begin</span>()+<span class="hljs-number">2</span>,<span class="hljs-number">-1</span>);<br></code></pre></td></tr></table></figure>
+<h2 id="二、set">二、set</h2>
+<h3 id="1、定义-2">1、定义</h3>
+<p><strong>内部自动有序</strong>且<strong>不含重复元素</strong>的容器。</p>
+<p><strong>set</strong> 内的元素自动递增排序，且去除了重复元素</p>
+<p><strong>延申</strong>：如果需要处理<strong>不唯一</strong>的情况，则需要使用 <strong>multiset</strong>.</p>
+<p>C++11 标准还增加了 <strong>unordered_set</strong>，以散列代替set内部的红黑树(Red Black Tree，一种自平衡二叉查找树)实现，用来处理<strong>只去重但不排序</strong>的需求，<strong>速度</strong>比set快很多</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;set&gt;</span></span><br>set&lt;<span class="hljs-keyword">typename</span>&gt; name;<br><span class="hljs-comment">// e.g.</span><br>set&lt;<span class="hljs-keyword">int</span>&gt; name;<br>set&lt;node&gt; name;<br>set&lt;<span class="hljs-keyword">typename</span>&gt; Arrayname[arraySize];<br></code></pre></td></tr></table></figure>
+<h3 id="2、访问-2">2、访问</h3>
+<p>只能通过**迭代器(iterator)**访问</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">set&lt;<span class="hljs-keyword">typename</span>&gt;::iterator it;<br>set&lt;<span class="hljs-keyword">typename</span>&gt; st;<br><span class="hljs-keyword">for</span> (set&lt;<span class="hljs-keyword">typename</span>&gt;::iterator it = st.<span class="hljs-built_in">begin</span>(); it != st.<span class="hljs-built_in">end</span>(); it++)&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, *it)<br>&#125;<br><span class="hljs-comment">// 不能使用 it &lt; st.end() 的写法</span><br><span class="hljs-comment">// 除了vector 和 string 之外的STL容器都不支持 *(it+i) 的访问方式</span><br></code></pre></td></tr></table></figure>
+<h3 id="3、常用函数-2">3、常用函数</h3>
+<p><strong>1、insert()</strong></p>
+<p><code>insert(x)</code> 可将 x 插入 set 容器，并自动<strong>递增排序</strong>和<strong>去重</strong>，时间复杂度为 <strong>O(logN)</strong></p>
+<p><strong>2、find()</strong></p>
+<p><code>find(vlaue)</code> 返回 set 中对应值为 value 的迭代器，时间复杂度为 <strong>O(logN)</strong></p>
+<h2 id="三、string">三、string</h2>
+<p>字符串容器，对字符串常用的功能进行了封装</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span> 与 <span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-comment">// 是不同的</span><br></code></pre></td></tr></table></figure>
+<h3 id="1、定义-3">1、定义</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">string str;<br>string str = <span class="hljs-string">&quot;xianyue&quot;</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="2、访问-3">2、访问</h3>
+<ul>
+<li>
+<p>下标访问</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++">string str = <span class="hljs-string">&quot;xianyue&quot;</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i &lt; str.<span class="hljs-built_in">length</span>(); i++) &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, str[i]);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果要读入或者输出整个字符串，只能使用<strong>cin</strong>和<strong>cout</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">string str;<br>cin &gt;&gt; str;<br>cout &lt;&lt; str;<br></code></pre></td></tr></table></figure>
+<p><strong>printf</strong>输出<strong>string</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">string str = <span class="hljs-string">&quot;xianyue&quot;</span>;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, str.<span class="hljs-built_in">c_str</span>());<br><span class="hljs-comment">// 将string转成字符数组</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>迭代器访问</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++">string str = <span class="hljs-string">&quot;xianyue&quot;</span>;<br><span class="hljs-keyword">for</span> (string::iterator it = str.<span class="hljs-built_in">begin</span>(); it != str.<span class="hljs-built_in">end</span>(); it++) &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, *t);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>string</strong>和<strong>vector</strong>一样，支持直接对迭代器进行加减某个数字</p>
+</li>
+</ul>
+<h3 id="3、常用函数-3">3、常用函数</h3>
+<p><strong>1、operator+=</strong></p>
+<p><strong>string</strong>的加法，拼接字符串</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">string str1 = <span class="hljs-string">&quot;xianyue&quot;</span>, str2 = <span class="hljs-string">&quot;rrr&quot;</span>, str3;<br>str3 = str1 + str2;<br>cout&lt;&lt;str3;<br></code></pre></td></tr></table></figure>
+<p><strong>2、compare operator</strong></p>
+<p>两个<strong>string</strong>可以直接使用 <strong>==, !=, &lt;, &lt;=, &gt;, &gt;=</strong> 比较大小，规则是字典序</p>
+<p><strong>3、length() / size()</strong></p>
+<p>**length()**返回string的长度，即存放的字符数，O(1)</p>
+<p>**size()<strong>和</strong>length()**基本相同</p>
+<p><strong>4、insert()</strong>，O(N)</p>
+<ul>
+<li><strong>insert(pos, string)</strong>，在pos位置插入字符串 string</li>
+<li><strong>insert(it, it2, it3)</strong>，<strong>it</strong>为原字符串的欲插入位置，<strong>it2</strong>和<strong>it3</strong>是待插入字符串的首尾迭代器</li>
+</ul>
+<p><strong>5、substr()</strong>，O(len)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">str.<span class="hljs-built_in">substr</span>(pos, len);<br><span class="hljs-comment">// 返回从 pos 号位开始，长度为 len 的子串</span><br></code></pre></td></tr></table></figure>
+<p><strong>6、string::npos</strong>，是一个<strong>常数</strong>，本身的值为 <strong>-1</strong>，由于是 <strong>unsigned_int</strong> 类型，所以也可以当作 <strong>unsigned_int</strong> 的最大值。可以作为 <strong>find</strong> 函数失配时的返回值。</p>
+<p><strong>7、find()</strong>，O(nm)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++">str.<span class="hljs-built_in">find</span>(str2);<br><span class="hljs-comment">// 当 str2 是 str 的子串时，返回其在 str 中第一次出现的位置；</span><br><span class="hljs-comment">// 如果 str2 不是 str 的子串，返回 string::npos</span><br><br>str.<span class="hljs-built_in">find</span>(str2, pos);<br><span class="hljs-comment">// 从 pos 号位开始匹配 str2，返回值与上相同</span><br></code></pre></td></tr></table></figure>
+<p><strong>8、replace()</strong>，O(str.length)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++">str.<span class="hljs-built_in">replace</span>(pos, len, str2);<br><span class="hljs-comment">// 把 str 从 pos 号位开始，长度为 len 的子串替换为 str2</span><br><br>str.<span class="hljs-built_in">replace</span>(it1, it2, str2);<br><span class="hljs-comment">// 把 [it1, it2) 范围内的子串替换为 str2</span><br></code></pre></td></tr></table></figure>
+<h2 id="四、map">四、map</h2>
+<p><strong>映射</strong>，可以将任何基本类型映射到任何基本类型。内部是<strong>红黑树</strong>实现的（set也是），会以<strong>键</strong> <strong>从小到大</strong>的顺序自动排序。</p>
+<p>如果一个键需要对应多个值，就只能用 <strong>multimap</strong>，C++11标准还增加了 <strong>unordered_map</strong>，以<strong>散列</strong>代替 map 内部的红黑树实现，<strong>只映射不排序</strong>，速度快得多</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br></code></pre></td></tr></table></figure>
+<h3 id="1、定义-4">1、定义</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++">map&lt;typename1, typename2&gt; mp;<br><br>map&lt;string, <span class="hljs-keyword">int</span>&gt; mp;<br><span class="hljs-comment">// 字符串到整型的映射，必须使用 string，而不能使用 char 数组</span><br><br>map&lt;set&lt;<span class="hljs-keyword">int</span>&gt;, string&gt; mp;<br></code></pre></td></tr></table></figure>
+<h3 id="2、访问-4">2、访问</h3>
+<ul>
+<li>
+<p>通过下标访问 <code>mp[key]</code></p>
+</li>
+<li>
+<p>通过迭代器访问</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++">map&lt;typename1, typename2&gt;::iterator it;<br>it-&gt;first; <span class="hljs-comment">// 访问 key</span><br>it-&gt;second; <span class="hljs-comment">// 访问 value</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3、常用函数-4">3、常用函数</h3>
+<p><strong>1、find()</strong></p>
+<p>find(key) 返回键为 key 的映射的迭代器，O(logN)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">map&lt;typename1, typename2&gt; mp;<br>map&lt;typename1, typename2&gt;::iterator it = mp.<span class="hljs-built_in">find</span>(key);<br></code></pre></td></tr></table></figure>
+<h2 id="五、queue">五、queue</h2>
+<p>队列，<strong>先进先出</strong>。</p>
+<p><strong>双端队列</strong>：deque</p>
+<p><strong>优先级队列</strong>：priority_queue</p>
+<h3 id="1、定义-5">1、定义</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>queue&lt;<span class="hljs-keyword">typename</span>&gt; name;<br></code></pre></td></tr></table></figure>
+<h3 id="2、访问-5">2、访问</h3>
+<p>由于队列<strong>先进先出</strong>，所以只能通过 <code>front()</code> 来访问队首元素，或者是通过 <code>back()</code> 来访问队尾元素</p>
+<h3 id="3、常用函数-5">3、常用函数</h3>
+<p><strong>1、push()</strong></p>
+<p><code>push(x)</code>，将 <code>x</code> 加入队列，O(1)</p>
+<p><strong>2、front()、back()</strong></p>
+<p><code>front() / back()</code> 获取 队首 / 队尾 元素，O(1)</p>
+<p><strong>3、pop()</strong></p>
+<p><code>pop()</code>，令队首元素出队，O(1)</p>
+<p><strong>4、empty()</strong></p>
+<p><code>empty()</code>，检测队列是否为空，O(1)</p>
+<p><strong>注意</strong>：使用 <code>front() / pop()</code> 前， 必须使用 <code>empty()</code> 判断队列是否为空</p>
+<h2 id="六、priority-queue">六、priority_queue</h2>
+<p>优先级队列，底层是使用<strong>堆</strong>来进行实现的，队首元素一定是当前队列中优先级最高的</p>
+<h3 id="1、定义-6">1、定义</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>priority_queue&lt;<span class="hljs-keyword">typename</span>&gt; name;<br><span class="hljs-comment">//对于基础类型 默认是大顶堆</span><br></code></pre></td></tr></table></figure>
+<h3 id="2、访问-6">2、访问</h3>
+<p>优先级队列没有 <code>front()</code> 函数 和 <code>back()</code> 函数，只能通过 <code>top()</code> 函数来访问队首元素（<strong>堆顶</strong>）</p>
+<h3 id="3、常用函数-6">3、常用函数</h3>
+<p><strong>1、push()</strong></p>
+<p><code>push(x)</code>，令 x 入队，O(logN)</p>
+<p><strong>2、top()</strong></p>
+<p><code>top()</code>，获取队首元素，O(1)</p>
+<p><strong>3、pop()</strong></p>
+<p>堆顶出队</p>
+<p><strong>4、empty()</strong></p>
+<p>检测队列是否为空</p>
+<h3 id="4、优先级设置">4、优先级设置</h3>
+<p><strong>基本数据类型</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++">priority_queue&lt;<span class="hljs-keyword">int</span>&gt; q; <span class="hljs-comment">// 默认为大顶堆</span><br>priority_queue&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;, less&lt;<span class="hljs-keyword">int</span>&gt; &gt; q;<br><span class="hljs-comment">//     这里一定要有空格，不然成了右移运算符↓</span><br>priority_queue&lt;<span class="hljs-keyword">int</span>, vector&lt;<span class="hljs-keyword">int</span>&gt;, greater&lt;<span class="hljs-keyword">int</span>&gt; &gt; c;<br><span class="hljs-comment">//这样就是小顶堆</span><br><span class="hljs-comment">// vector&lt;int&gt; 是承载底层数据结构堆（heap）的容器</span><br><span class="hljs-comment">// less&lt;int&gt; 是对第一个参数的比较类</span><br><span class="hljs-comment">// less&lt;int&gt; 表示数字越大优先级越高</span><br><span class="hljs-comment">// greater&lt;int&gt; 表示数字越小优先级越高</span><br></code></pre></td></tr></table></figure>
+<p><strong>结构体</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">fruit</span> &#123;</span><br>    string name;<br>    <span class="hljs-keyword">int</span> price;<br>    <span class="hljs-comment">// 重载运算符</span><br>    <span class="hljs-comment">// 价格高的优先级高</span><br>    <span class="hljs-comment">// 默认是值越小优先级越高</span><br>    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span> &lt; (<span class="hljs-keyword">const</span> fruit &amp;f1,<span class="hljs-keyword">const</span> fruit &amp;f2) &#123;<br>        <span class="hljs-keyword">return</span> f1.price &lt; f2.price;<br>    &#125;<br>&#125;;<br>priority_queue&lt;fruit&gt; q;<br><span class="hljs-comment">// or</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">cmp</span> &#123;</span><br>    <span class="hljs-comment">// 价格高的优先级高</span><br>    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">operator</span> <span class="hljs-params">()</span> <span class="hljs-params">(<span class="hljs-keyword">const</span> fruit &amp;f1, <span class="hljs-keyword">const</span> fruit &amp;f2)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> f1.price &gt; f2.price;<br>    &#125;<br>&#125;;<br>priority_queue&lt;fruit, vector&lt;fruit&gt;, cmp&gt; q;<br></code></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/20210402230553.png" alt="image-20210402230545841"></p>
+<p><strong>注意</strong>：使用 <code>top()</code> 函数前，必须使用 <code>empty()</code> 判断优先级队列是否为空</p>
+<h2 id="七、stack">七、stack</h2>
+<p>栈，<strong>后进先出</strong></p>
+<h3 id="1、定义-7">1、定义</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stack&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>stack&lt;<span class="hljs-keyword">typename</span>&gt; name;<br></code></pre></td></tr></table></figure>
+<h3 id="2、访问-7">2、访问</h3>
+<p>由于栈是一种后进先出的数据结构，所以只能通过<code>top()</code> 来访问<strong>栈顶</strong>元素</p>
+<h3 id="3、常用函数-7">3、常用函数</h3>
+<p><strong>1、push()</strong></p>
+<p><code>push(x)</code> 将<code>x</code>入栈，O(1)</p>
+<p><strong>2、top()</strong>，获取栈顶元素，O(1)</p>
+<p><strong>3、pop()</strong>，弹出栈顶元素，O(1)</p>
+<p><strong>4、empty()</strong>：检测是否为空，O(1)</p>
+<h2 id="八、pair">八、pair</h2>
+<p>把两个元素绑在一起，但又不想定义结构体时，<strong>pair</strong>是一个替代品，也就是说<strong>pair</strong>可以看作一个内部有两个元素的结构体。</p>
+<p><strong>map</strong>的内部实现涉及<strong>pair</strong>。可以作为<strong>map</strong> 的键值对来插入。</p>
+<h3 id="1、定义-8">1、定义</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;utility&gt;</span> <span class="hljs-comment">// 可以使用 &lt;map&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br>pair&lt;typename1, typename2&gt; name;<br><span class="hljs-function">pair&lt;typename1, typename2&gt; <span class="hljs-title">name</span><span class="hljs-params">(value1, value2)</span></span>;<br><br><span class="hljs-comment">// 临时构建</span><br>pair&lt;type1, type2&gt;(value1, value2);<br><span class="hljs-comment">// or</span><br><span class="hljs-built_in">make_pair</span>(value1, value2);<br></code></pre></td></tr></table></figure>
+<h3 id="2、访问-8">2、访问</h3>
+<p>pair只有两个元素，分别是 <strong>first</strong> 和 <strong>second</strong>，按正常结构体去访问就好</p>
+<h3 id="3、常用函数-8">3、常用函数</h3>
+<p><strong>比较操作数</strong>，以&lt;first, second&gt; 元组方式比较</p>
+<h2 id="九、algorithm头文件下的常用函数">九、algorithm头文件下的常用函数</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br></code></pre></td></tr></table></figure>
+<p><strong>1、max()、min()、abs()</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">max</span>(x, y);<br><span class="hljs-built_in">min</span>(x, y);<br><br><span class="hljs-built_in">abs</span>(x);<br><span class="hljs-comment">// x 只能是整数，浮点数的绝对值要使用 math 头文件下的 fabs(x)</span><br></code></pre></td></tr></table></figure>
+<p><strong>2、swap()</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">swap</span>(x, y);<br><span class="hljs-comment">// 交换 x, y 的值</span><br></code></pre></td></tr></table></figure>
+<p><strong>3、reverse()</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">reverse</span>(it, it2);<br><span class="hljs-comment">// 将数组指针在 [it, it2) 之间的元素</span><br><span class="hljs-comment">// 或者容器的迭代器在 [it, it2) 范围内元素</span><br><span class="hljs-comment">// 进行反转</span><br></code></pre></td></tr></table></figure>
+<p><strong>4、next_permutation()</strong></p>
+<p>给出一个序列在<strong>全排列</strong>中的下一个序列。到达最后一个时返回<code>flase</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> a[<span class="hljs-number">10</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;;<br><span class="hljs-keyword">do</span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d%d%d\n&quot;</span>, a[<span class="hljs-number">0</span>], a[<span class="hljs-number">1</span>], a[<span class="hljs-number">2</span>]);<br>&#125; <span class="hljs-keyword">while</span>(<span class="hljs-built_in">next_permutation</span>(a, a+<span class="hljs-number">3</span>));<br></code></pre></td></tr></table></figure>
+<p><strong>5、fill()</strong></p>
+<p>可以把<strong>数组</strong>或<strong>容器</strong>中的某一段区间赋为某个值。和<strong>memset</strong>不太一样，<strong>fill</strong>可以赋范围内的所有值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">fill</span>(it, it2, value);<br><span class="hljs-comment">// it - (it2-1) 赋值为 vlaue</span><br></code></pre></td></tr></table></figure>
+<p><strong>6、sort()</strong></p>
+<p>排序函数，效率较高。一般不推荐<strong>C语言</strong>中的<code>qsort()</code>，因为其比较繁琐。</p>
+<p><strong>sort</strong>规避了<strong>经典快排</strong>中可能出现的复杂度退化到 <strong>O(<img src="https://math.now.sh?inline=n%5E2" style="display:inline-block;margin: 0;"/>)</strong> 的极端情况。</p>
+<p><strong>STL</strong>标准容器中，只有 <strong>vector</strong>、<strong>string</strong>、<strong>deque</strong>是可以使用 <strong>sort</strong>。因为像是 <strong>set</strong>、<strong>map</strong>这种内部是使用<strong>红黑树</strong>实现的，元素本身就有序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">sort</span>(首元素地址, 尾元素的下一个地址, 比较函数(非必填));<br><span class="hljs-comment">// 默认进行递增排序</span><br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> a&gt;b;<br>    <span class="hljs-comment">// a&gt;b 时把 a 放在 b 前面</span><br>&#125;<br><br><span class="hljs-comment">// struct 数组的排序</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span><br>    <span class="hljs-keyword">int</span> x, y;<br>&#125;;<br><span class="hljs-comment">// 按 x 的值递减排序</span><br>node ssd[<span class="hljs-number">10</span>];<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(node a, node b)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> a.x &gt; b.x;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>7、lower_bound() 和 upper_bound()</strong></p>
+<p>需要在一个<strong>有序</strong>数组或者容器中使用。O(log(last-first))</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">lower_bound</span>(first, last, val);<br><span class="hljs-comment">// 返回 [first, last) 内第一个值大于等于 val 的元素的位置</span><br><span class="hljs-comment">// 数组返回指针</span><br><span class="hljs-comment">// 容器返回迭代器</span><br><br><span class="hljs-comment">// 如果不存在这样的元素，返回可以插入该元素的 指针 或 迭代器</span><br></code></pre></td></tr></table></figure>
+<h2 id="公共函数">公共函数</h2>
+<p><strong>1、clear()</strong></p>
+<p><code>clear()</code>用来清空vector中的所有元素</p>
+<p><strong>2、erase()</strong></p>
+<p>erase()有两种用法：</p>
+<ul>
+<li>删除单个元素：erase(it)，删除迭代器处的元素</li>
+<li>删除一个区间内的所有元素：<code>erase(first,last)</code>，即删除(first,last )区间内的元素</li>
+</ul>
+<p><strong>3、size()</strong></p>
+<p><code>size()</code>用来获得vector中元素的个数</p>
+<h2 id="C-11">C++11</h2>
+<p><strong>emplace_front</strong>、<strong>emplace</strong> 和 <strong>emplace_back</strong></p>
+<p>这些操作构造而不是拷贝元素到容器中，这些操作分别对应<strong>push_front</strong>、<strong>insert</strong> 和<strong>push_back</strong>，允许我们将元素放在容器头部、一个指定的位置和容器尾部</p>
+<h3 id="两者的区别">两者的区别</h3>
+<p>当调用insert时，是将对象传递给insert，对象被拷贝到容器中，而当我们使用emplace时，是将参数传递给构造函，emplace使用这些参数在容器管理的内存空间中直接构造元素。</p>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/OneDrive/图片/pixiv/92417665_p0.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2021/08/06/%E5%AD%97%E8%8A%82%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%BC%80%E5%8F%91/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">字节大数据开发</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+      <div class="card-cover" background-image-lazy data-img="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/img/OneDrive/图片/壁纸/431960_screenshots_20200318202345_1.jpg"></div>
+    
+    <div class="card-text">
+      
+        <a href="/2021/04/09/C-%E5%9B%9B%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">C++ 四种类型转换</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://cdn.jsdelivr.net/gh/xianyuerrr/PicGo/picgo/71852423.jpg" class="soft-size--round soft-style--box" alt="xianyue">
+    
+    
+      <h2>xianyue</h2>
+    
+    
+      <p>日复一日，必有精进</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>54</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        9
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        36
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+<section class="widget-toc widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-toc" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M134.50666666 767.46666668H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.23999999v50.13333333c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H134.50666666c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.13333333c0.10666668-27.73333333 22.50666668-50.24000001 50.24000001-50.24000001zM84.37333332 541.65333333h326.18666669c27.73333333 0 50.24000001 22.39999999 50.23999999 50.13333334v50.24000001c0 27.73333333-22.50666668 50.24000001-50.24000002 50.23999999H84.37333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.23999999v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333334zM134.50666666 315.83999999H460.8c27.73333333 0 50.24000001 22.50666668 50.24000001 50.24000001v50.24000001c0 27.73333333-22.50666668 50.13333334-50.24000001 50.13333333H134.50666666c-27.73333333 0-50.24000001-22.39999999-50.23999999-50.13333333v-50.24000001c0.10666668-27.84000001 22.50666668-50.24000001 50.24000001-50.23999999zM209.81333332 89.91999999h326.18666671c27.73333333 0 50.24000001 22.39999999 50.23999997 50.13333335v50.23999999c0 27.73333333-22.50666668 50.24000001-50.24000001 50.24000001H209.81333332c-27.73333333 0-50.24000001-22.50666668-50.23999999-50.24000001v-50.24000001c0-27.73333333 22.50666668-50.13333334 50.24000001-50.13333333zM692.05333333 623.36l274.66666669 176.00000002c23.36000001 14.93333333 30.08 45.97333334 15.14666666 69.33333332L954.77333334 910.93333333c-14.93333333 23.25333334-45.97333334 30.08-69.33333335 15.14666667l-274.66666666-176c-23.36000001-14.93333333-30.08-45.97333334-15.14666667-69.33333333l27.09333334-42.24000001c14.93333333-23.36000001 46.08000001-30.08 69.33333333-15.14666666z" fill="currentColor"></path>
+</svg>
+    <span>TOC</span>
+  </div>
+  <div class="widget-body">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81vector"><span class="toc-number">1.</span> <span class="toc-text">一、vector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE"><span class="toc-number">1.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">3、常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81set"><span class="toc-number">2.</span> <span class="toc-text">二、set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89-2"><span class="toc-number">2.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE-2"><span class="toc-number">2.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-2"><span class="toc-number">2.3.</span> <span class="toc-text">3、常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81string"><span class="toc-number">3.</span> <span class="toc-text">三、string</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89-3"><span class="toc-number">3.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE-3"><span class="toc-number">3.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-3"><span class="toc-number">3.3.</span> <span class="toc-text">3、常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81map"><span class="toc-number">4.</span> <span class="toc-text">四、map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89-4"><span class="toc-number">4.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE-4"><span class="toc-number">4.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-4"><span class="toc-number">4.3.</span> <span class="toc-text">3、常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81queue"><span class="toc-number">5.</span> <span class="toc-text">五、queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89-5"><span class="toc-number">5.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE-5"><span class="toc-number">5.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-5"><span class="toc-number">5.3.</span> <span class="toc-text">3、常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81priority-queue"><span class="toc-number">6.</span> <span class="toc-text">六、priority_queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89-6"><span class="toc-number">6.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE-6"><span class="toc-number">6.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-6"><span class="toc-number">6.3.</span> <span class="toc-text">3、常用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%AE%BE%E7%BD%AE"><span class="toc-number">6.4.</span> <span class="toc-text">4、优先级设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81stack"><span class="toc-number">7.</span> <span class="toc-text">七、stack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89-7"><span class="toc-number">7.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE-7"><span class="toc-number">7.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-7"><span class="toc-number">7.3.</span> <span class="toc-text">3、常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81pair"><span class="toc-number">8.</span> <span class="toc-text">八、pair</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%9A%E4%B9%89-8"><span class="toc-number">8.1.</span> <span class="toc-text">1、定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AE%BF%E9%97%AE-8"><span class="toc-number">8.2.</span> <span class="toc-text">2、访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-8"><span class="toc-number">8.3.</span> <span class="toc-text">3、常用函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81algorithm%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%8B%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">9.</span> <span class="toc-text">九、algorithm头文件下的常用函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">公共函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-11"><span class="toc-number">11.</span> <span class="toc-text">C++11</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">11.1.</span> <span class="toc-text">两者的区别</span></a></li></ol></li></ol>
+  </div>
+</section>
+
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Code/">
+            Code (35)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E9%98%85%E8%AF%BB/">
+            阅读 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">
+            计算机 (3)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Markdown/">
+            Markdown (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/Tools/">
+            Tools (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E7%AE%97%E6%B3%95/">
+            算法 (5)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/hexo%E9%85%8D%E7%BD%AE/">
+            hexo配置 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/">
+            未分类 (1)
+          </a>
+        </li>
+      
+        <li class="categorys-list-item">
+          <a href="/categories/%E9%9D%A2%E8%AF%95/">
+            面试 (6)
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Byte/" style="font-size: 10px;" class="tags-cloud-0">Byte</a> <a href="/tags/C/" style="font-size: 16.25px;" class="tags-cloud-6">C++</a> <a href="/tags/Default/" style="font-size: 10px;" class="tags-cloud-0">Default</a> <a href="/tags/Go/" style="font-size: 10px;" class="tags-cloud-0">Go</a> <a href="/tags/Java/" style="font-size: 20px;" class="tags-cloud-10">Java</a> <a href="/tags/Jupyter/" style="font-size: 10px;" class="tags-cloud-0">Jupyter</a> <a href="/tags/Linux/" style="font-size: 11.25px;" class="tags-cloud-1">Linux</a> <a href="/tags/Markdown/" style="font-size: 10px;" class="tags-cloud-0">Markdown</a> <a href="/tags/Maven/" style="font-size: 11.25px;" class="tags-cloud-1">Maven</a> <a href="/tags/MySQL/" style="font-size: 10px;" class="tags-cloud-0">MySQL</a> <a href="/tags/Python/" style="font-size: 17.5px;" class="tags-cloud-8">Python</a> <a href="/tags/Redis/" style="font-size: 10px;" class="tags-cloud-0">Redis</a> <a href="/tags/STL/" style="font-size: 10px;" class="tags-cloud-0">STL</a> <a href="/tags/bit/" style="font-size: 10px;" class="tags-cloud-0">bit</a> <a href="/tags/hexo/" style="font-size: 10px;" class="tags-cloud-0">hexo</a> <a href="/tags/host/" style="font-size: 10px;" class="tags-cloud-0">host</a> <a href="/tags/math/" style="font-size: 11.25px;" class="tags-cloud-1">math</a> <a href="/tags/pip/" style="font-size: 10px;" class="tags-cloud-0">pip</a> <a href="/tags/%E4%BA%8C%E5%88%86/" style="font-size: 10px;" class="tags-cloud-0">二分</a> <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" style="font-size: 10px;" class="tags-cloud-0">位运算</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 10px;" class="tags-cloud-0">刷题</a> <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" style="font-size: 10px;" class="tags-cloud-0">垃圾回收</a> <a href="/tags/%E5%A0%86/" style="font-size: 11.25px;" class="tags-cloud-1">堆</a> <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 11.25px;" class="tags-cloud-1">多线程</a> <a href="/tags/%E5%AD%97%E8%8A%82/" style="font-size: 12.5px;" class="tags-cloud-3">字节</a> <a href="/tags/%E5%B0%8F%E7%B1%B3/" style="font-size: 10px;" class="tags-cloud-0">小米</a> <a href="/tags/%E5%BC%82%E6%88%96/" style="font-size: 10px;" class="tags-cloud-0">异或</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/" style="font-size: 10px;" class="tags-cloud-0">技术书籍阅读</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 11.25px;" class="tags-cloud-1">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;" class="tags-cloud-5">数据结构</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.75px;" class="tags-cloud-4">算法</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 11.25px;" class="tags-cloud-1">计网</a> <a href="/tags/%E8%AE%A1%E7%BD%91-%E9%9D%A2%E8%AF%95/" style="font-size: 10px;" class="tags-cloud-0">计网 - 面试</a> <a href="/tags/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" style="font-size: 11.25px;" class="tags-cloud-1">输入输出</a> <a href="/tags/%E9%9A%8F%E6%9C%BA/" style="font-size: 10px;" class="tags-cloud-0">随机</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 18.75px;" class="tags-cloud-9">面试</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2024 <a href="/" target="_blank">[object Object]</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
